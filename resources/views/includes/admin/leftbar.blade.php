@@ -70,10 +70,34 @@
                               <span class="menu-title">Config</span>
                           </a>
                       </div>
+                      <div class="menu-item">
+                          <a class="menu-link" href="category">
+                              <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                              </span>
+                              <span class="menu-title">Kategori</span>
+                          </a>
+                      </div>
+                      <div class="menu-item">
+                          <a class="menu-link" href="user">
+                              <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                              </span>
+                              <span class="menu-title"> Sync User </span>
+                          </a>
+                      </div>
+                      <div class="menu-item">
+                          <a class="menu-link" href="api-test">
+                              <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                              </span>
+                              <span class="menu-title">Koneksi API Test</span>
+                          </a>
+                      </div>
                   </div>
                 </div>
                 <div class="menu-item">
-                  <a class="menu-link" href="kelas-reguler">
+                  <a class="menu-link" href="mata-kuliah">
                       <span class="menu-icon">
                         <span class="svg-icon svg-icon-2">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -83,7 +107,7 @@
                           </svg>
                         </span>
                       </span>
-                      <span class="menu-title">Kelas Reguler</span>
+                      <span class="menu-title">Mata Kuliah Reguler</span>
                   </a>
                 </div>
                 <div class="menu-item">

@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Semester extends Model
+class MstUser extends Model
 {
     use HasFactory;
-    
     protected $fillable = [
-        'name',
-        'startdate',
-        'enddate',
-        'config_course',
-        'active',
-        'semester',
-        'year'
+        'usertype',
+        'username',
+        'fullname',
+        'code_prodi',
+        'code_fakultas',
+        'id_lms',
     ];
 }

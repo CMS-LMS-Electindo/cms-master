@@ -17,10 +17,13 @@ class CreateConfigsTable extends Migration
             $table->id();
             $table->string('code_pt')->unique();
             $table->string('nama_pt');
+            $table->string('nama_app');
             $table->string('domain_pt');
             $table->string('email_pt')->nullable();
+            $table->string('desc')->nullable();
             $table->string('add_course')->nullable(); //Config Penambahan MK Type 1,2,3
-            $table->string('req_course')->nullable(); //Config Jeni Pembuatan MK Buat langsung atau paksa buat dgn rppe
+            $table->string('req_course')->nullable(); //Config Jenis Pembuatan MK Buat langsung atau paksa buat dgn rppe
+            $table->string('active')->nullable();
             
             $table->timestamps();
         });

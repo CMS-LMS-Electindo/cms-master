@@ -32,7 +32,8 @@
         "files": [
             "app/Helper/Tanggal.php",
             "app/Helper/Response.php",
-            "app/Helper/Lainnya.php"
+            "app/Helper/Lainnya.php",
+            "app/Helper/curl.php"
         ]
     },
     "autoload-dev": {

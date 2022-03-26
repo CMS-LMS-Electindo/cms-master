@@ -16,6 +16,8 @@ class CreateSemestersTable extends Migration
         Schema::create('semesters', function (Blueprint $table) {
             $table->id(); 
             $table->string('name');
+            $table->string('year');
+            $table->string('semester'); //1 ganjil, 2 genap, 3 antara
             $table->date('startdate');
             $table->date('enddate');
             $table->string('config_course', 45)->nullable();

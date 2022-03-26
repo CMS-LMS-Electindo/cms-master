@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateMstUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('mst_users', function (Blueprint $table) {
             $table->id();
-            $table->string('code_sia');
-            $table->string('name');
-            $table->string('parent'); //parent berdasarkan id db bukan id categori lms atau sia
-            $table->string('code_lms', 45)->nullable();
-            
+            $table->string('usertype');
+            $table->string('username');
+            $table->string('fullname');
+            $table->string('code_prodi');
+            $table->string('code_fakultas');
+            $table->string('id_lms')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('mst_users');
     }
 }

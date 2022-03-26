@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helpers\Tanggal;
 use App\Http\Controllers\Controller;
-use App\Models\Config;
-use App\Models\Semester;
 use Illuminate\Http\Request;
+use App\Helpers\Tanggal;
+use App\Models\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
 
-class SemesterController extends Controller
+class ConfigController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +20,7 @@ class SemesterController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Semester::get();
+            $data = Config::get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -50,10 +49,7 @@ class SemesterController extends Controller
                     return $btn;
                 })->addColumn('config', function ($row) {
                     
-                    $btn = '<div class=" align-items-center">
-                    <span class="badge badge-success fs-base mb-1"> Tipe Pembuatan MK : '.$row->config_course.'</span> <br>
-                    <span class="text-muted fw-bold text-muted d-block fs-7">'.$row->year.' Semester '.$row->semester.'</span>
-                    </div';
+                    $btn = '<span class="badge badge-light-danger fw-bold me-1"> Tipe : '.$row->add_course.'</span>    <span class="badge badge-light-info fw-bold me-1"> Tipe Pembuatan : '.$row->req_course.'</span>';
                     return $btn;
                 })->addColumn('aktif', function ($row) {
                     if ($row->active == 1){
@@ -69,19 +65,25 @@ class SemesterController extends Controller
                 })->addColumn('nama', function ($row) {
                     $btn = '<div class="d-flex align-items-center">
                     <div class="d-flex justify-content-start flex-column">
-                        <label class="text-dark fw-bolder text-hover-primary fs-6">'.$row->name.'</label>
+                        <label class="text-dark fw-bolder text-hover-primary fs-6 align-items-center fw-bold mb-2">'.$row->nama_app.' <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="'.$row->desc.'"></i></label>
                        
-                        <span class="text-muted fw-bold text-muted d-block fs-7">'.$row->startdate.' - '.$row->enddate.'</span>
-                    </div>
-                </div>';
-                
-                //  <span class="text-muted fw-bold text-muted d-block fs-7">'.Tanggal::TanggalIndo($row->startdate).' - '.Tanggal::TanggalIndo($row->end).'</span>
+                        <span class="text-muted fw-bold text-muted d-block fs-7">'.$row->code_pt.' - '.$row->nama_pt.'</span>
+                        </div>
+                    </div>';
+                    return $btn;
+                })->addColumn('domain', function ($row) {
+                    $btn = '<div class="d-flex align-items-center">
+                    <div class="d-flex justify-content-start flex-column">
+                            <span class="text-muted fw-bold text-muted d-block fs-7">'.$row->domain_pt.'</span>
+                            <span class="text-muted fw-bold text-muted d-block fs-7">'.$row->email_pt.'</span>
+                        </div>
+                    </div>';
                     return $btn;
                 })
-                ->rawColumns(['action','nama','config','aktif'])
+                ->rawColumns(['action','nama','config','aktif','domain'])
                 ->make(true);
         }
-        $page = 'Data Semester ';
+        $page = 'Data Config ';
         $parent1 = 'Master Data ';
         $data['page'] = $page;
         $data['toolBarDesc'] = "<li class=\"breadcrumb-item text-muted\">
@@ -95,7 +97,7 @@ class SemesterController extends Controller
                 <span class='bullet bg-gray-300 w-5px h-2px'></span>
             </li>
             <li class='breadcrumb-item text-dark'>".$page."</li>";
-        return view('admin.semester.default',$data);
+        return view('admin.config.default',$data);
     }
 
     /**
@@ -119,40 +121,41 @@ class SemesterController extends Controller
        // dd($request->appName);
         if ($request->kode != null)
             $request->validate([
-                'semesterName' =>  'required',
-                'semester' =>  'required',
-                'year' =>  'required',
-                'startDate' =>  'required',
-                'endDate' =>  'required',
-                'config_type' =>  'required',
+                'appName' =>  'required',
+                'ptName' =>  'required',
+                'ptCode' =>  'required',
+                'ptDomain' =>  'required',
+                'ptEmail' =>  'required',
+                // 'config_type' =>  'required',
+                'config_req' =>  'required',
                 // 'file' => 'required|mimes:jpeg,jpg,png,mp4|max:2048',
             ]);
        else
             $request->validate([
-                'semesterName' =>  'required',
-                'semester' =>  'required',
-                'year' =>  'required',
-                'startDate' =>  'required',
-                'endDate' =>  'required',
-                'config_type' =>  'required',
+                'appName' =>  'required',
+                'ptName' =>  'required',
+                'ptCode' =>  'required',
+                'ptDomain' =>  'required',
+                'ptEmail' =>  'required',
+                // 'config_type' =>  'required',
+                'config_req' =>  'required',
             ]);
-       $user = Auth::user()->name;
-
-      
         $data = array(
-            'name'=> $request->semesterName,
-            'semester'=> $request->semester,
-            'year'=> $request->year,
-            'startdate'=> Tanggal::TanggalDB($request->startDate),
-            'enddate'=> Tanggal::TanggalDB($request->endDate),
-            'config_course'=> $request->config_type,
+            'nama_app' =>  $request->appName,
+            'nama_pt' =>  $request->ptName,
+            'code_pt' =>  $request->ptCode,
+            'domain_pt' =>  $request->ptDomain,
+            'email_pt' =>  $request->ptEmail,
+            // 'add_course' =>  $request->config_type,
+            'req_course' =>  $request->config_req,
+            'desc' =>  $request->desc,
         );
        if ($request->kode != null){
-           Semester::where('id', $request->kode)
+           Config::where('id', $request->kode)
                ->update($data);
        }else{
             $data['active'] =0;
-           Semester::create($data);
+            Config::create($data);
        }
        $return = array(
         //    'file'    => $media,
@@ -183,10 +186,10 @@ class SemesterController extends Controller
     public function edit($id)
     {
         //
-       $unit = Semester::where("id",$id)->first();
+       $unit = Config::where("id",$id)->first();
        return response()->json($unit);
     }
-    public function SemesterAktif(Request $request)
+    public function ConfigAktif(Request $request)
     {
         if ( $request->id == null){
             $return = array(
@@ -196,9 +199,9 @@ class SemesterController extends Controller
             return response()->json($return);
         }
         $data['active'] = 0;
-        Semester::query()->update($data);
+        Config::query()->update($data);
         $data1['active'] = 1;
-        $updated = Semester::where('id', $request->id)
+        $updated = Config::where('id', $request->id)
             ->update($data1);
         if ($updated) {
             $return = array(
@@ -210,13 +213,6 @@ class SemesterController extends Controller
                 'status' => false,
                 'message' => 'Gagal diaktifkan..'
             );
-        }
-        $qC = Config::where('active' , 1)->first();
-        if ($qC !== null){
-            $qS = Semester::where('id', $request->id)->first();
-            $data2['add_course'] = $qS->config_course;
-            $updated = Config::where('active' , 1)
-                ->update($data2);
         }
  
         return response()->json($return);
@@ -241,7 +237,7 @@ class SemesterController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = Semester::where('id', $id)->delete();
+        $deleted = Config::where('id', $id)->delete();
         if ($deleted) {
             $return = array(
                 'status' => true,
