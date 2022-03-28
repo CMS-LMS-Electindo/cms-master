@@ -82,7 +82,7 @@
       </div>
     </div>
   </div>
-  <div class="card mb-7 mx-5">
+  <div class="card mb-7 mx-5 d-none" id="progressLMS">
     <!--begin::Card body-->
     <div class="card-body">
       <div class="d-flex align-items-center">
@@ -330,6 +330,7 @@
     $.get("{{ url('mata-kuliah') }}" +'/1/edit', function (data) {
         $('#mk_view').html('');
         $('#mk_view').html(data.html);
+        $("#progressLMS").addClass('d-none');
         KTMenu.createInstances();
       // var menuElement = document.querySelector("#kt_menu");
       // var menu = KTMenu.getInstance(menuElement);
@@ -348,6 +349,9 @@
         confirmButtonText: 'Ya'
     }).then((result) => {
         if (result.value) {
+          $("#progressLMS").removeClass('d-none');
+          const element = document.getElementById("progressLMS");
+          element.scrollIntoView();
           $("."+kelas).html("<i class='fas fa-sync-alt mt-0 fa-spin'></i> Loading");
           $("."+kelas).addClass('btn-danger');
           $("."+kelas).removeClass("btn-light");
@@ -364,12 +368,15 @@
             },
             success: function(response) {
                 if (response.status==true) {
+                  document.body.scrollTop = 0; // For Safari
+                  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
                   // toastr.success(response.message, 'Berhasil', {timeOut: 5000});
                   // getdata();
                   //ubah progressBar
-                  $("#progressBarMK").css("width","10%");
-                  $("#progressBarMK").attr("aria-valuenow","10");
-                  $("#progressBarMK").html("10%");
+                  var progress = response.progress;
+                  $("#progressBarMK").css("width",progress+"%");
+                  $("#progressBarMK").attr("aria-valuenow",progress);
+                  $("#progressBarMK").html(progress+"%");
                   $("#progressTitle").html("Enrol Dosen Pengampu Mata Kuliah...");
                   
                   var idLMS = response.id_lms ;
@@ -381,14 +388,82 @@
                         '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS
                     },
                     success: function(response) {
+                      //ubah progressBar
+                      if (response.status==true) {
+                        var progress = response.progress;
+                        $("#progressBarMK").css("width",progress+"%");
+                        $("#progressBarMK").attr("aria-valuenow",progress);
+                        $("#progressBarMK").html(progress+"%");
+                        $("#progressTitle").html("Enrol Mahasiswa Mata Kuliah (Harap Bersabar)...");
+                        // Enrol Dosen
+                        $.ajax({
+                          type: "POST",
+                          url: "{{ url('enrol-mahasiswa-mata-kuliah') }}",
+                            data:{
+                              '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS
+                          },
+                          success: function(response) {
+                            //ubah progressBar
+                            if (response.status==true) {
+                              var progress = response.progress;
+                              $("#progressBarMK").css("width",progress+"%");
+                              $("#progressBarMK").attr("aria-valuenow",progress);
+                              $("#progressBarMK").html(progress+"%");
+                              $("#progressTitle").html("Gruping Mahasiswa pada Mata Kuliah...");
+                              $.ajax({
+                                type: "POST",
+                                url: "{{ url('buat-grup-mata-kuliah') }}",
+                                  data:{
+                                    '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS
+                                },
+                                success: function(response) {
+                                  //ubah progressBar
+                                  if (response.status==true) {
+                                    var progress = response.progress;
+                                    $("#progressBarMK").css("width",progress+"%");
+                                    $("#progressBarMK").attr("aria-valuenow",progress);
+                                    $("#progressBarMK").html(progress+"%");
+                                    $("#progressTitle").html("Gruping Mahasiswa...");
+                                    toastr.success(response.message, 'Pembuatan Mata Kuliah telah selesai', {timeOut: 5000});
+                                    $("."+kelas).html(" Buat Kelas");
+                                    // $("."+kelas).html(" Buat Mata Kuliah");
+                                    $("."+kelas).addClass('btn-danger');
+                                    $("."+kelas).removeClass("btn-light");
+                                    getdata();
+                                  } else{
+                                    toastr.error(response.message, 'Gagal', {timeOut: 5000});
+                                    $("."+kelas).html(" Buat Kelas");
+                                    // $("."+kelas).html(" Buat Mata Kuliah");
+                                    $("."+kelas).addClass('btn-danger');
+                                    $("."+kelas).removeClass("btn-light");
+                                  }
+                                }
+                              });
+                            } else{
+                              toastr.error(response.message, 'Gagal', {timeOut: 5000});
+                              $("."+kelas).html(" Buat Kelas");
+                              // $("."+kelas).html(" Buat Mata Kuliah");
+                              $("."+kelas).addClass('btn-danger');
+                              $("."+kelas).removeClass("btn-light");
+                            }
+                          }
+                        });
+                      } else{
+                        toastr.error(response.message, 'Gagal', {timeOut: 5000});
+                        $("."+kelas).html(" Buat Kelas");
+                        // $("."+kelas).html(" Buat Mata Kuliah");
+                        $("."+kelas).addClass('btn-danger');
+                        $("."+kelas).removeClass("btn-light");
+                      }
                     }
                   });
                 } else{
                   toastr.error(response.message, 'Gagal', {timeOut: 5000});
-                }
                 $("."+kelas).html(" Buat Kelas");
+                // $("."+kelas).html(" Buat Mata Kuliah");
                 $("."+kelas).addClass('btn-danger');
                 $("."+kelas).removeClass("btn-light");
+                }
             }
           });
         }

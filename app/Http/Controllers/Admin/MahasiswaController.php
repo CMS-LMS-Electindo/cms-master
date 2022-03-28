@@ -7,24 +7,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dosen\EnrolController;
 use App\Models\Config;
 use App\Models\MstUser;
-use App\Models\User;
 use Illuminate\Http\Request;
+
 use Yajra\DataTables\Facades\DataTables;
 use curl;
 
-class UserController extends Controller
+class MahasiswaController extends Controller
 {
-    /** Sinkronisasi Dosen SIA
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     * 
-     */
+    //
+    
     public function index(Request $request)
     {
         if ($request->ajax()) {
             // $fak = MstUser::where('parent', 0)->get();
-            $data = MstUser::where('usertype', 'dosen')->get();
+            $data = MstUser::where('usertype', 'mahasiswa')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($row) {
@@ -57,14 +53,15 @@ class UserController extends Controller
                 <span class='bullet bg-gray-300 w-5px h-2px'></span>
             </li>
             <li class='breadcrumb-item text-dark'>".$page."</li>";
-        return view('admin.user.default',$data);
+        return view('admin.user.defaultMahasiswa',$data);
     }
-    public function SyncDosen(Request $request)
+    
+    public function SyncMahasiswa(Request $request)
     {
         // Tambah User Dosen ke LMS 
-        $dosenSIA = $this->getDosen();
+        $dosenSIA = $this->getMahasiswa();
         // return response()->json($dosenSIA);
-        $qDosen = MstUser::where('usertype','dosen')->get();
+        $qDosen = MstUser::where('usertype','mahasiswa')->get();
         $domain = Config::where("active", 1)->first()->domain;
         $users = array();
         $dosenCMS = array();
@@ -75,48 +72,48 @@ class UserController extends Controller
             // if ($i == 1)
             //     break;
             foreach ($qDosen as $listDosen ) {
-                if ($list['kode_dosen'] == $listDosen->username){
+                if ($list['kode_mahasiswa'] == $listDosen->username){
                     $ada = 1;
                     break;
                 }
             }
             if ($ada == 0){
                 // Buat User
-                $email = $list['email'] ;//== "-" ? $list['kode_dosen']."@unm.ac.id" : $list['email'];
+                $email = $list['email'] ;//== "-" ? $list['kode_mahasiswa']."@unm.ac.id" : $list['email'];
                 if(strpos($email, '@') && strpos($email, '.') ){
                     if (str_contains($email, 'example.com')) { 
-                        $email = $list['kode_dosen']."@".$domain; 
+                        $email = $list['kode_mahasiswa']."@".$domain; 
                     }else{
                         $ema = explode("@",$email);
                         if ($ema[1] !== "unm.ac.id" || $ema[1] !== "gmail.com" || $ema[1] !== "yahoo.com" || $ema[1] !== "yahoo.co.id" || $ema[1] !== "rocketmail.com" || $ema[1] !== $domain  )
-                            $email = $list['kode_dosen']."@".$domain; 
+                            $email = $list['kode_mahasiswa']."@".$domain; 
                     }
 
                 } else{
-                        $email = $list['kode_dosen']."@".$domain; 
+                        $email = $list['kode_mahasiswa']."@".$domain; 
                 }
                 $users = array(
-                    'username'=> strtolower( $list['kode_dosen']),
-                    'firstname'=>$list['kode_dosen'],
-                    'lastname'=>$list['nama_dosen'],
+                    'username'=> strtolower( $list['kode_mahasiswa']),
+                    'firstname'=>$list['kode_mahasiswa'],
+                    'lastname'=>$list['nama_mahasiswa'],
                     'email'=> strtolower($email),
                     'department'=>$list['kode_prodi'],
                     'institution'=>$list['kode_fakultas'],
-                    'description'=>"dosen",
-                    'password' => 'DSN'.$list['kode_dosen'],
+                    'description'=>"mahasiswa",
+                    'password' => 'MHS'.$list['kode_mahasiswa'],
                 );
                 $users1[] = $users;
                 $dosenCMS[] = $users;
                 $i++;
                 
-                // 'username'=>$list['kode_dosen'],
-                // 'firstname'=>$list['kode_dosen'],
-                // 'lastname'=>$list['nama_dosen'],
+                // 'username'=>$list['kode_mahasiswa'],
+                // 'firstname'=>$list['kode_mahasiswa'],
+                // 'lastname'=>$list['nama_mahasiswa'],
                 // 'email'=> $email,
                 // 'department'=>$list['kode_prodi'],
                 // 'unit'=>$list['kode_fakultas'],
                 // 'description'=>"dosen",
-                // 'password' => 'DSN'.$list['kode_dosen'],
+                // 'password' => 'DSN'.$list['kode_mahasiswa'],
             }
         }
 		$data = array('users' => $users1);
@@ -163,12 +160,12 @@ class UserController extends Controller
 
     }
     
-    function getDosen()
+    function getMahasiswa()
     {
         $curl = curl_init();
         $url ='';
         $postAr = [];
-        $url= "http://apisia.unm.ac.id/cms-all-dosen?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+        $url= "http://apisia.unm.ac.id/cms-all-mahasiswa?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
 
         curl_setopt_array($curl, 
         array(
@@ -192,13 +189,13 @@ class UserController extends Controller
         curl_close($curl);
         return $data['data'];
     }
-    public function GetDosen1(Request $request)
+    public function GetMahasiswa1(Request $request)
     {
         $jml = $request->jumlah;
         $curl = curl_init();
         $url ='';
         $postAr = [];
-        $url= "http://apisia.unm.ac.id/cms-all-dosen?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+        $url= "http://apisia.unm.ac.id/cms-all-mahasiswa?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
 
         curl_setopt_array($curl, 
         array(
@@ -223,7 +220,7 @@ class UserController extends Controller
         // return $data['data'];
 
         $dosen = array();
-        $qDosen = MstUser::where('usertype', 'dosen')->get();
+        $qDosen = MstUser::where('usertype', 'mahasiswa')->get();
         $b= 0;
         $no= 0;
         // return response()->json($data['data']);
@@ -231,7 +228,7 @@ class UserController extends Controller
         for ($i=0; $i < count($data['data']); $i++) { 
             $a= 0;
             foreach ($qDosen as $list ) {
-                if ($data['data'][$i]['kode_dosen'] == $list->username){
+                if ($data['data'][$i]['kode_mahasiswa'] == $list->username){
                     $a = 1;
                     break;
                 }
@@ -250,8 +247,8 @@ class UserController extends Controller
                 <td>
                     <div class="d-flex align-items-center">
                         <div class="d-flex justify-content-start flex-column">
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">'.$data['data'][$i]['nama_dosen'].'</a>
-                            <span class="text-muted fw-bold text-muted d-block fs-7">'.$data['data'][$i]['kode_dosen'].'</span>
+                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">'.$data['data'][$i]['nama_mahasiswa'].'</a>
+                            <span class="text-muted fw-bold text-muted d-block fs-7">'.$data['data'][$i]['kode_mahasiswa'].'</span>
                         </div>
                     </div>
                 </td>
@@ -276,12 +273,13 @@ class UserController extends Controller
         $return = array(
             'status'    => 1,
             'progress'    => 10,
-            'message'    => "Data Dosen Berhasil diambil",
+            'message'    => "Data Mahasiswa Berhasil diambil",
             'data'    => $dosen,
             'html'    => $html,
         );
         return response()->json($return);
     }
+    
     public function CreateUserLms(Request $request)
     {
         // Response progress
@@ -294,14 +292,14 @@ class UserController extends Controller
         else 
             $progress = round((($next / $jml ) * 90) + 10);
 
-        $kodeUser = $request->data[$id]['kode_dosen'];
-        $namaUser = $request->data[$id]['nama_dosen'];
+        $kodeUser = $request->data[$id]['kode_mahasiswa'];
+        $namaUser = $request->data[$id]['nama_mahasiswa'];
         $kode_prodi = $request->data[$id]['kode_prodi'];
         $kode_fakultas = $request->data[$id]['kode_fakultas'];
         $email = $request->data[$id]['email'];
         $domain = Config::where("active", 1)->first()->domain_pt;
 
-        $buatUser = EnrolController::SyncUser($kodeUser, $namaUser, $kode_prodi, $kode_fakultas,$email, 'dosen', $domain,"DSN");
+        $buatUser = EnrolController::SyncUser($kodeUser, $namaUser, $kode_prodi, $kode_fakultas,$email, 'mahasiswa', $domain,"MHS");
 
         $return = array(
             'progress'    => $progress ,
@@ -318,70 +316,5 @@ class UserController extends Controller
             $return['message'] = "Terdapat Data Dosen Gagal Disinkronisasi";
         }
         return response()->json($return);
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

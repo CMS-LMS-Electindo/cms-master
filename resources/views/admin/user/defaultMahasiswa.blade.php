@@ -17,7 +17,7 @@
         <span class="card-label fw-bolder fs-3 mb-1">{{$page}}</span>
         {{-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 members</span> --}}
       </h3>
-      <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click Untuk Sinkronisasi Data Dosen">
+      <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click Untuk Sinkronisasi Data Mahasiswa">
         <button class="btn btn-sm btn-light btn-active-primary sync-dosen mb-2 mx-2" >
           <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
           <span class="svg-icon svg-icon-3">
@@ -28,7 +28,7 @@
               </svg>
             </span>
           </span>
-          <!--end::Svg Icon-->Sinkronisasi Kolektif {{$page}} Dosen 
+          <!--end::Svg Icon-->Sinkronisasi Kolektif {{$page}} Mahasiswa 
         </button>
         <button class="btn btn-sm btn-secondary btn-active-primary sync-dosen-1 mb-2 mx-2" >
           <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -40,7 +40,7 @@
               </svg>
             </span>
           </span>
-          <!--end::Svg Icon-->Sinkronisasi  {{$page}} Dosen 
+          <!--end::Svg Icon-->Sinkronisasi  {{$page}} Mahasiswa 
         </button>
       </div>
     </div>
@@ -100,7 +100,7 @@
         <!--begin::Modal body-->
         <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
           <!--begin:Form-->
-          <form id="kt_modal_new_target_form" class="form" action="#">
+          <form id="kt_modal_new_target_form" class="form" >
             <!--begin::Heading-->
             <div class="mb-13 text-center">
               <!--begin::Title-->
@@ -113,12 +113,12 @@
               <!--end::Description-->
             </div>
            
-            <div class="row g-9 mb-8 ">
+            <div class="row g-9 mb-8 " id="">
               <div class="col-sm-8 fv-row">
                 <!--end::Label-->
                 <input type="number" class="form-control form-control-solid" placeholder="Enter jumlah data" name="jumlah" id="jumlah" />
               </div>
-              <div class="col-sm-4 fv-row text-center ">
+              <div class="col-sm-4 fv-row text-center">
                 <button type="button" id="kt_modal_new_target_submit" class="btn btn-primary save">
                   <span class="indicator-label">Sync</span>
                   <span class="indicator-progress">Please wait...
@@ -150,7 +150,7 @@
                 <thead>
                     <tr class="fw-bolder text-muted">
                         <th class="w-25px">Nomor</th>
-                        <th class="min-w-200px">Kode Dosen</th>
+                        <th class="min-w-200px">Kode Mahasiswa</th>
                         <th class="min-w-150px">Program Studi</th>
                         <th class="min-w-150px">Email</th>
                         <th class="min-w-150px text-center">Status</th>
@@ -205,7 +205,7 @@
       processing: false,
       serverSide: true,
       ajax:{
-        "url": "{{ ('/user') }}",
+        "url": "{{ ('/sync-mahasiswa') }}",
         "dataType": "json",
         "type": "GET",
         "data":{ _token: "{{csrf_token()}}"}
@@ -234,7 +234,7 @@
   }
   $(".sync-dosen").click(function() {
     Swal.fire({
-        title: 'Apakah anda yakin akan melakukan sinkronisasi data dosen ke LMS?',
+        title: 'Apakah anda yakin akan melakukan sinkronisasi data Mahasiswa ke LMS?',
         text: "",
         icon: 'warning',
         showCancelButton: true,
@@ -249,7 +249,7 @@
           $(".sync-dosen").removeClass("btn-light");
                 $.ajax({
                 type: "POST",
-                url: "{{ url('sync-dosen') }}",
+                url: "{{ url('sync-mahasiswa-lms') }}",
                   data:{
                     '_token': '{{ csrf_token() }}',
                 },
@@ -295,14 +295,14 @@
           $("#progressBarMK").css("width","5%");
           $("#progressBarMK").attr("aria-valuenow",'5');
           $("#progressBarMK").html("5%");
-          $("#progressTitle").html("Ambil Data Dosen...");
+          $("#progressTitle").html("Ambil Data Mahasiswa...");
 
           $("#kt_modal_new_target_submit").html("<i class='fas fa-sync-alt mt-0 fa-spin'></i> Loading");
           $("#kt_modal_new_target_submit").addClass('btn-danger');
           $("#kt_modal_new_target_submit").removeClass("btn-light");
             $.ajax({
                 type: "POST",
-                url: "{{ url('get-dosen-1') }}",
+                url: "{{ url('get-mahasiswa-1') }}",
                   data:{
                     '_token': '{{ csrf_token() }}',jumlah,
                 },
@@ -323,7 +323,7 @@
                   $("#progressBarMK").css("width",progress+"%");
                   $("#progressBarMK").attr("aria-valuenow",progress);
                   $("#progressBarMK").html(progress+"%");
-                  $("#progressTitle").html("Sync Dosen 1...");
+                  $("#progressTitle").html("Sync Mahasiswa 1...");
                   $('#tBodyUser').html(response.html);
                   createUser(0, jumlah, response.data);
                 }
@@ -334,7 +334,7 @@
   function createUser(id, jumlah, data) {
     $.ajax({
       type: "POST",
-      url: "{{ url('create-user-lms') }}",
+      url: "{{ url('create-mahasiswa-lms') }}",
         data:{
           '_token': '{{ csrf_token() }}',jumlah,id,data
       },
@@ -355,7 +355,7 @@
         $("#progressBarMK").css("width",progress+"%");
         $("#progressBarMK").attr("aria-valuenow",progress);
         $("#progressBarMK").html(progress+"%");
-        $("#progressTitle").html("Sync Dosen "+response.next+"...");
+        $("#progressTitle").html("Sync Mahasiswa "+response.next+"...");
 
         if(response.next == jumlah){
           toastr.success("Proses Sinkronisasi Telah Selesai", 'Siknronisasi', {timeOut: 5000});
@@ -364,6 +364,7 @@
           $("#kt_modal_new_target_submit").removeClass("btn-danger");
           $("#progressTitle").html("Sync Mahasiswa Selesai.");
           $("#progressDiv").addClass("d-none");
+
         }else{
           createUser(response.next, jumlah, data);
         }

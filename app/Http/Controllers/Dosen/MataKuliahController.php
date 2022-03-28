@@ -358,7 +358,9 @@ class MataKuliahController extends Controller
           'status'    => 1,
           'message'    => "Data Mata Kuliah Berhasil Ditambahkan",
           'data'    => $data1,
+          'progress'    => rand(10,20),
           'id_lms'    => $data1[0]['id'],
+          
         );
       }else{
         $return = array(

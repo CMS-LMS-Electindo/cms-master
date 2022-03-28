@@ -83,7 +83,15 @@
                               <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                               </span>
-                              <span class="menu-title"> Sync User </span>
+                              <span class="menu-title"> Sync Dosen </span>
+                          </a>
+                      </div>
+                      <div class="menu-item">
+                          <a class="menu-link" href="sync-mahasiswa">
+                              <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                              </span>
+                              <span class="menu-title"> Sync Mahasiswa </span>
                           </a>
                       </div>
                       <div class="menu-item">
