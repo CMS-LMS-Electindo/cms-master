@@ -68,15 +68,4 @@ class Tanggal
 
         return $daftar_hari[$namahari];
     }
-    public static function checkFinalisasiMK($id = null)
-    {
-        if ($id == null) return 0;
-        $q = MataKuliah::where('id', $id)->first();
-        // if (!isset($q->finalisasi) )
-        //     return 0;
-        if ($q->finalisasi == 1)
-            return "Mata kuliah ini sudah difinalisasi sehingga tidak dimungkinkan lagi dilakukan perubahan, silahkan menghubungi admin jika ingin mengubahnya!";
-        return 0;
-    }
-  
 }

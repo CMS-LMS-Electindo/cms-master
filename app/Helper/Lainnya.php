@@ -6,6 +6,7 @@ use App\Anggota;
 use App\LapAkhir;
 use App\LapKemajuan;
 use App\MasterDekan;
+use App\Models\Config;
 use App\Models\Dosen;
 use App\Models\MataKuliah;
 use App\Notifikasi;
@@ -56,45 +57,19 @@ class Lainnya
 	// 	]);
 	// 	return true;
 	// }
-	public static function setSessionUser($nidn)
+	public static function setSessionToken()
     {
-        $dosen = Dosen::where('nidn',$nidn)->first();
+        $dosen = Config::where('active',1)->first();
 		if ($dosen){
-			session(['nama' => $dosen->nama]);
-			session(['foto' => "assets/foto/".$dosen->foto]);
-			if ($dosen->foto == '' ||$dosen->foto == null )
-			    session(['foto' => "assets/foto/blank.jpg"]);
-			
-			session(['kependidikan' => $dosen->kependidikan]);
-			self::setSessionMK();
+			session(['TokenLMS' => $dosen->token_lms]);
+			session(['TokenLMSAuth' => $dosen->token_auth]);
+			session(['DomainLMS' => $dosen->domain_lms]);
+			session(['DomainSIA' => $dosen->domain_api]);
+			session(['HeaderSIA' => $dosen->token_sia]);
+			session(['AppSIA' => $dosen->app_sia]);
 		}
         return 1;
     }
-	public static function setSessionMK()
-    {
-		$jumlahMK1 = MataKuliah::where('semester','1')
-		->orWhere('mata_kuliahs.semester', 3)
-		->orWhere('mata_kuliahs.semester', 5)
-		->orWhere('mata_kuliahs.semester', 7)->count();
-		$jumlahMK1Tekom = MataKuliah::where('id_prodi', '56202')
-		->where('mata_kuliahs.semester', 1)
-		->orWhere('mata_kuliahs.semester', 3)
-		->orWhere('mata_kuliahs.semester', 5)->count();
-		$jumlahMK2 = MataKuliah::where('semester','2')
-		->orWhere('mata_kuliahs.semester', 4)
-		->orWhere('mata_kuliahs.semester', 6)
-		->orWhere('mata_kuliahs.semester', 8)->count();
-		$jumlahMK2Tekom = MataKuliah::where('id_prodi', '56202')
-		->where('semester','2')
-		->orWhere('mata_kuliahs.semester', 4)
-		->orWhere('mata_kuliahs.semester', 6)
-		->orWhere('mata_kuliahs.semester', 8)->count();
-		session(['jumlahMK1' => $jumlahMK1]);
-		session(['jumlahMK1Tekom' => $jumlahMK1Tekom]);
-		session(['jumlahMK1PTIK' => $jumlahMK1 - $jumlahMK1Tekom]);
-		session(['jumlahMK2' => $jumlahMK2]);
-		session(['jumlahMK2Tekom' => $jumlahMK2Tekom]);
-		session(['jumlahMK2PTIK' => $jumlahMK1 - $jumlahMK2Tekom]);
-    }
+	
     
 }

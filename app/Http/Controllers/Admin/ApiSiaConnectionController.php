@@ -38,11 +38,11 @@ class ApiSiaConnectionController extends Controller
         $url ='';
         $postAr = [];
         if ($request->type == "fakultas"){
-            $url= "http://apisia.unm.ac.id/cms-all-fakultas?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+            $url= session('DomainSIA')."/cms-all-fakultas?h=".session('HeaderSIA')."&app=".session('AppSIA')."";
         }elseif ($request->type == "prodi"){
-            $url= "http://apisia.unm.ac.id/cms-all-prodi?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+            $url= session('DomainSIA')."/cms-all-prodi?h=".session('HeaderSIA')."&app=".session('AppSIA')."";
         }elseif ($request->type == "mk-semster"){
-            $url= "http://apisia.unm.ac.id/cms-mk-semester?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+            $url= session('DomainSIA')."/cms-mk-semester?h=".session('HeaderSIA')."&app=".session('AppSIA')."";
             $sem = Semester::where('active', 1)->first();
             $semName = $sem->name;
             $thn = substr($semName, 0,4);

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Dosen\EnrolController;
 use App\Http\Controllers\Dosen\GroupingMahasiswaController;
 use App\Http\Controllers\Dosen\MataKuliahController;
+use App\Http\Controllers\Mahasiswa\MataKuliahMahasiswaController;
 use App\Models\Config;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -64,17 +65,21 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
     Route::group(['roles' => 'operator'], function () {
     });
     Route::group(['roles' => 'mahasiswa'], function () {
+        Route::resource('mata-kuliah-mahasiswa', MataKuliahMahasiswaController::class);
+        
     });
     Route::group(['roles' => ['admin', 'dosen']], function () {
         Route::resource('mata-kuliah', MataKuliahController::class);
         Route::post('/buat-mata-kuliah', [MataKuliahController::class, 'MakeMKLMS']);
         Route::post('/enrol-dosen-mata-kuliah', [EnrolController::class, 'EnrolDosen']);
         Route::post('/enrol-mahasiswa-mata-kuliah', [EnrolController::class, 'EnrolMahasiswa']);
-        Route::post('/buat-grup-mata-kuliah', [GroupingMahasiswaController::class, 'AddGroupMk']);
+        Route::post('/get-detail-mk', [MataKuliahController::class, 'getDetailMK']);
         
+        Route::post('/buat-grup-mata-kuliah', [GroupingMahasiswaController::class, 'AddGroupMk']);
+        Route::post('/add-mhs-grup-mata-kuliah', [GroupingMahasiswaController::class, 'AddMhsGroupMk']);
     });
-    Route::group(['roles' => ['admin','kajur','prodi']], function () {
-        // Route::resource('validasi-mata-kuliah', ValidasiMataKuliahController::class);
+    Route::group(['roles' => ['admin', 'dosen','mahasiswa']], function () {
+        Route::get('/sso-lms', [MataKuliahController::class, 'ActionMoodle']);            
     });
     
 });

@@ -65,7 +65,7 @@
 
 <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
   <!--begin::Modal dialog-->
-  <div class="modal-dialog modal-dialog-centered mw-650px">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <!--begin::Modal content-->
     <div class="modal-content rounded">
       <!--begin::Modal header-->
@@ -157,18 +157,49 @@
               </div>
               <!--end::Input-->
             </div>
+            <div class="col-md-12 fv-row">
+              <label class=" fs-6 fw-bold mb-2" for="lmsDomain">Domain LMS</label>
+              <!--begin::Input-->
+              <div class="position-relative d-flex align-items-center">
+                <input type="text" class="form-control form-control-solid" placeholder="Enter Domain LMS Perguruan Tinggi" name="lmsDomain" id="lmsDomain" />
+              </div>
+              <!--end::Input-->
+            </div>
+            
+            <div class="col-md-6 fv-row">
+              <label class=" fs-6 fw-bold mb-2" for="apiDomain">Domain API SIA</label>
+              <!--begin::Input-->
+              <div class="position-relative d-flex align-items-center">
+                <input type="text" class="form-control form-control-solid" placeholder="Enter Domain API SIA Perguruan Tinggi" name="apiDomain" id="apiDomain" />
+              </div>
+              <!--end::Input-->
+            </div>
+            <div class="col-md-6 fv-row">
+              <label class=" fs-6 fw-bold mb-2" for="keyApiSia">Key App SIA</label>
+              <!--begin::Input-->
+              <div class="position-relative d-flex align-items-center">
+                <input type="text" class="form-control form-control-solid" placeholder="Enter Key API SIA" name="keyApiSia" id="keyApiSia" />
+              </div>
+              <!--end::Input-->
+            </div>
+            
             
           </div>
           <div class="row g-9 mb-8">
-            {{-- <div class="col-md-6 fv-row">
-              <label class="required fs-6 fw-bold mb-2" for="config_type">Config Type</label>
-              <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Config Type" name="config_type" id="config_type">
-                <option value="">Select Type...</option>
-                <option value="1">Type 1</option>
-                <option value="2">Type 2</option>
-                <option value="3">Type 3</option>
-              </select>
-            </div> --}}
+            <div class="col-md-12 fv-row">
+              <label class=" fs-6 fw-bold mb-2" for="token_lms">Token LMS</label>
+              <input type="text" class="form-control form-control-solid" placeholder="Enter Token" name="token_lms" id="token_lms" />
+            </div>
+            <div class="col-md-12 fv-row">
+              <label class=" fs-6 fw-bold mb-2" for="token_auth">Token Auth</label>
+              <input type="text" class="form-control form-control-solid" placeholder="Enter Token" name="token_auth" id="token_auth" />
+            </div>
+            <div class="col-md-12 fv-row">
+              <label class=" fs-6 fw-bold mb-2" for="token_sia">Token API SIA</label>
+              <input type="text" class="form-control form-control-solid" placeholder="Enter Token" name="token_sia" id="token_sia" />
+            </div>
+          </div>
+          <div class="row g-9 mb-8">
             <div class="col-md-12 fv-row">
               <label class="required fs-6 fw-bold mb-2" for="config_req">Config Pembuatan Mata Kuliah</label>
               <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Config Type" name="config_req" id="config_req">
@@ -356,7 +387,14 @@
         $('#ptEmail').val(data.email_pt);
         $('#config_req').val(data.req_course);
         $('#desc').val(data.desc);
+        $('#lmsDomain').val(data.domain_lms);
+        $('#apiDomain').val(data.domain_api);
+        $('#token_lms').val(data.token_lms);
+        $('#token_auth').val(data.token_auth);
+        $('#keyApiSia').val(data.app_sia);
+        $('#token_sia').val(data.token_sia);
         $("#select2-config_req-container").html("<span class='select2-selection__placeholder'>"+data.req_course+"</span>");
+        
     })
   }
   function hapus(id) {

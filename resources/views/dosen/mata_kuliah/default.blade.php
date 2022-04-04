@@ -121,6 +121,167 @@
     <!--end::Header-->
     <!--begin::Body-->
     <div class="card-body py-3">
+      <div class="mb-xl-8 bg-light-warning rounded p-4 border-danger border border-dashed">
+        <div class="card-header border-0 mb-3" style="min-height: auto; justify-content: start; z-index: 1;">
+          <div class=" m-2">
+            <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" style="width: auto;">
+              <div class="badge badge-primary p-3" style="font-size: 11px;"> 
+                <span class="menu-icon">
+                  <i class="bi bi-people-fill fs-3" style="color: white"></i>
+                </span> &nbsp;&nbsp;Peserta  &nbsp;&nbsp; 
+                
+                <span class="menu-icon">
+                  <i class="bi bi-caret-down-fill fs-5 " style="color: white"></i>
+                </span>
+              </div>
+            </button>
+            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
+              <div class="menu-item px-3">
+                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Peserta</div>
+              </div>
+              <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">Sinkron Peserta</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Enrol Dosen LB/Tamu</a>
+              </div>
+              <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">Daftar Mahasiswa</a>
+              </div>
+              <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">Daftar Kelas</a>
+              </div>
+            </div>
+          </div>
+          <div class=" m-2">
+            <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-success" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" style="width: auto;">
+              <div class="badge badge-success p-3" style="font-size: 11px;"> 
+                <span class="menu-icon">
+                  <i class="bi bi-award-fill fs-3" style="color: white"></i>
+                </span> &nbsp;&nbsp; Nilai  &nbsp;&nbsp; 
+                <span class="menu-icon">
+                  <i class="bi bi-caret-down-fill fs-5" style="color: white"></i>
+                </span>
+              </div>
+            </button>
+            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
+              <div class="menu-item px-3">
+                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Nilai</div>
+              </div>
+              <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">Atur Bobot Nilai</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Daftar Nilai</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Export Nilai</a>
+              </div>
+            </div>
+          </div>
+          <div class=" m-2">
+            <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-secondary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" style="width: auto;">
+              <div class="badge badge-secondary p-3" style="font-size: 11px;"> 
+                <span class="menu-icon">
+                  <i class="bi bi-binoculars-fill fs-3" style="color: white"></i>
+                </span> &nbsp;&nbsp;Monitoring Kelas  &nbsp;&nbsp; 
+                
+                <span class="menu-icon">
+                  <i class="bi bi-caret-down-fill fs-5" style="color: white"></i>
+                </span>
+              </div>
+            </button>
+            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
+              <div class="menu-item px-3">
+                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Monitoring Kelas</div>
+              </div>
+              <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">Statistik Kelas</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Ketuntasan Mahasiswa</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Partisipasi Mahasiswa</a>
+              </div>
+            </div>
+          </div>
+          <div class=" m-2">
+            <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-warning" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" style="width: auto;">
+              <div class="badge badge-warning p-3" style="font-size: 11px;"> 
+                <span class="menu-icon">
+                  <i class="bi bi-bookmarks-fill fs-3" style="color: white"></i>
+                </span> &nbsp;&nbsp;Bank Soal  &nbsp;&nbsp; 
+                
+                <span class="menu-icon">
+                  <i class="bi bi-caret-down-fill fs-5" style="color: white"></i>
+                </span>
+              </div>
+            </button>
+            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
+              <div class="menu-item px-3">
+                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Bank Soal</div>
+              </div>
+              <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">Daftar Soal</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Import Soal</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Export Soal</a>
+              </div>
+            </div>
+          </div>
+          <div class=" m-2">
+            <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" style="width: auto;">
+              <div class="badge badge-danger p-3" style="font-size: 11px;"> 
+                <span class="menu-icon">
+                  <i class="bi bi-gear-fill fs-3" style="color: white"></i>
+                </span> &nbsp;&nbsp;Tools  &nbsp;&nbsp; 
+                
+                <span class="menu-icon">
+                  <i class="bi bi-caret-down-fill fs-5" style="color: white"></i>
+                </span>
+              </div>
+            </button>
+            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
+              <div class="menu-item px-3">
+                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Pengaturan</div>
+              </div>
+              <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">Pengaturan Kelas</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Backup Kelas</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Restore Kelas</a>
+              </div>
+              <div class="menu-item px-3 my-1">
+                <a href="#" class="menu-link px-3">Import Kelas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" d-flex mb-4">
+          <div class="symbol symbol-100px symbol-2by3 flex-shrink-0 me-4">
+            <img src="assets/media/stock/600x400/img-3.jpg" class="mw-100" alt="" />
+          </div>
+          <div class="d-flex align-items-center flex-wrap flex-grow-1 mt-n2 mt-lg-n1">
+            <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pe-3">
+              <a href="#" class="fs-5 text-gray-800 text-hover-primary fw-bolder">Nama Mata Kuliah</a>
+              <span class="text-gray-400 fw-bold fs-7 my-1">Nama Program Studi</span>
+              <span class="text-gray-400 fw-bold fs-7">kurikulum:
+              <a href="#" class="text-primary fw-bold">kode kurikulum</a></span>
+            </div>
+            <div class="text-end py-lg-0 py-2">
+              <span class="text-gray-800 fw-boldest fs-3">6</span>
+              <span class="text-gray-400 fs-7 fw-bold d-block">SKS</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row g-5 g-xl-8" id="mk_view">
         
           {{-- <div class="col-xl-12">
@@ -303,6 +464,43 @@
       </div>
     </div>
   </div>
+ 
+<div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+  <!--begin::Modal dialog-->
+  <div class="modal-dialog modal-xl">
+    <!--begin::Modal content-->
+    <div class="modal-content rounded">
+      <!--begin::Modal header-->
+      <div class="modal-header justify-content-end border-0 pb-0">
+        <!--begin::Close-->
+        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+          <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+          <span class="svg-icon svg-icon-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+              <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+            </svg>
+          </span>
+          <!--end::Svg Icon-->
+        </div>
+        <!--end::Close-->
+      </div>
+      <div class="modal-body pt-0 pb-15 px-5 px-xl-20">
+        <div class="mb-13 text-center">
+          <h1 class="mb-3">Detail Mata Kuliah</h1>
+        </div>
+        <div class="d-flex flex-column">
+          <div class="row mt-10" id="modalBodyDetail">
+            
+          </div>
+        </div>
+        <div class="d-flex flex-center flex-row-fluid pt-12">
+          <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 
@@ -467,6 +665,76 @@
             }
           });
         }
+    })
+  }
+  
+  function syncMahasiswa(kelas, kode_prodi,kode_kurikulum,kode_mk,nama_mk, idLMS) {
+    
+    $("#progressLMS").removeClass('d-none');
+    const element = document.getElementById("progressLMS");
+    element.scrollIntoView();
+    var progress = Math.floor(Math.random() * 10) + 12;
+    $("#progressBarMK").css("width",progress+"%");
+    $("#progressBarMK").attr("aria-valuenow",progress);
+    $("#progressBarMK").html(progress+"%");
+    $("#progressTitle").html("Ambil Data Mahasiswa Pada Mata Kuliah... (Mohon Bersabar)");
+    $.ajax({
+      type: "POST",
+      url: "{{ url('enrol-mahasiswa-mata-kuliah') }}",
+        data:{
+          '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS
+      },
+      success: function(response) {
+        //ubah progressBar
+        if (response.status==true) {
+          var progress = response.progress;
+          $("#progressBarMK").css("width",progress+"%");
+          $("#progressBarMK").attr("aria-valuenow",progress);
+          $("#progressBarMK").html(progress+"%");
+          $("#progressTitle").html("Gruping Mahasiswa pada Mata Kuliah...");
+          var grup = 0;
+          $.ajax({
+            type: "POST",
+            url: "{{ url('add-mhs-grup-mata-kuliah') }}",
+              data:{
+                '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS,grup
+            },
+            success: function(response) {
+              //ubah progressBar
+              if (response.status==true) {
+                var progress = response.progress;
+                $("#progressBarMK").css("width",progress+"%");
+                $("#progressBarMK").attr("aria-valuenow",progress);
+                $("#progressBarMK").html(progress+"%");
+                $("#progressTitle").html("Gruping Mahasiswa...");
+                toastr.success(response.message, 'Sinkronisasi Mahasiswa Telah Selesai', {timeOut: 5000});
+                $("#progressLMS").addClass('d-none');
+                // getdata();
+              } else{
+                toastr.error(response.message, 'Gagal', {timeOut: 5000});
+              }
+            }
+          });
+        } else{
+          toastr.error(response.message, 'Gagal', {timeOut: 5000});
+        }
+      }
+    });
+  }
+  function detailMK(kode_kurikulum,kode_mk) {
+    $('#kt_modal_new_target').modal('show');
+    $.ajax({
+      type: "POST",
+      url: "{{ url('get-detail-mk') }}",
+        data:{
+          '_token': '{{ csrf_token() }}',kode_kurikulum,kode_mk,
+      },
+      success: function(response) {
+          if (response.status==true) {
+            $("#modalBodyDetail").html(response.html);
+          } else{
+          }
+      }
     })
   }
 </script>

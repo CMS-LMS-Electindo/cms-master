@@ -32,12 +32,14 @@
                       <span class="menu-title">Dashboard</span>
                   </a>
                 </div>
-                
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Application</span>
                     </div>
                 </div>
+                @php
+                  if (Auth::user()->role_id == 1){
+                @endphp
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                   <span class="menu-link">
                     <span class="menu-icon">
@@ -104,6 +106,31 @@
                       </div>
                   </div>
                 </div>
+                @php }
+                @endphp
+               
+                @php
+                  if (Auth::user()->role_id == 4){
+                @endphp
+                 
+                <div class="menu-item">
+                  <a class="menu-link" href="mata-kuliah-mahasiswa">
+                      <span class="menu-icon">
+                        <span class="svg-icon svg-icon-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path opacity="0.3" d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="black" />
+                            <path d="M20 8L14 2V6C14 7.10457 14.8954 8 16 8H20Z" fill="black" />
+                            <path d="M10.3629 14.0084L8.92108 12.6429C8.57518 12.3153 8.03352 12.3153 7.68761 12.6429C7.31405 12.9967 7.31405 13.5915 7.68761 13.9453L10.2254 16.3488C10.6111 16.714 11.215 16.714 11.6007 16.3488L16.3124 11.8865C16.6859 11.5327 16.6859 10.9379 16.3124 10.5841C15.9665 10.2565 15.4248 10.2565 15.0789 10.5841L11.4631 14.0084C11.1546 14.3006 10.6715 14.3006 10.3629 14.0084Z" fill="black" />
+                          </svg>
+                        </span>
+                      </span>
+                      <span class="menu-title">Mata Kuliah Reguler</span>
+                  </a>
+                </div>
+                @php
+                  }else{
+                @endphp
+                 
                 <div class="menu-item">
                   <a class="menu-link" href="mata-kuliah">
                       <span class="menu-icon">
@@ -118,6 +145,7 @@
                       <span class="menu-title">Mata Kuliah Reguler</span>
                   </a>
                 </div>
+                
                 <div class="menu-item">
                   <a class="menu-link" href="monitoring">
                       <span class="menu-icon">
@@ -131,6 +159,8 @@
                       <span class="menu-title">Monitoring</span>
                   </a>
                 </div>
+                @php }
+                @endphp
             </div>
           </div>
     </div>

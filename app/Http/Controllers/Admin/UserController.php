@@ -124,7 +124,7 @@ class UserController extends Controller
         // return response()->json($dosenCMS);
 
         header('Content-Type: text/plain');
-		$buatkategori = Response::DomainLMS . '/webservice/rest/server.php'.'?wstoken=' . Response::TokenLMS . '&moodlewsrestformat=json&wsfunction=core_user_create_users';
+		$buatkategori = session('DomainLMS') . '/webservice/rest/server.php'.'?wstoken=' . session('TokenLMS') . '&moodlewsrestformat=json&wsfunction=core_user_create_users';
 
 		$curl = new curl;
 		$injek = $curl->post($buatkategori, $data);
@@ -168,7 +168,7 @@ class UserController extends Controller
         $curl = curl_init();
         $url ='';
         $postAr = [];
-        $url= "http://apisia.unm.ac.id/cms-all-dosen?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+        $url= session('DomainSIA')."/cms-all-dosen?h=".session('HeaderSIA')."&app=".session('AppSIA')."";
 
         curl_setopt_array($curl, 
         array(
@@ -198,7 +198,7 @@ class UserController extends Controller
         $curl = curl_init();
         $url ='';
         $postAr = [];
-        $url= "http://apisia.unm.ac.id/cms-all-dosen?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+        $url= session('DomainSIA')."/cms-all-dosen?h=".session('HeaderSIA')."&app=".session('AppSIA')."";
 
         curl_setopt_array($curl, 
         array(

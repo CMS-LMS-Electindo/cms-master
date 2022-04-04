@@ -60,7 +60,7 @@ class EnrolController extends Controller
             'kode_mk' => $kodeMK,
             'kode_prodi' => $kodeProdi,
         );
-        $url= "http://apisia.unm.ac.id/cms-dosen-per-mk-semester?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+        $url= session('DomainSIA')."/cms-dosen-per-mk-semester?h=".session('HeaderSIA')."&app=".session('AppSIA')."";
 
         curl_setopt_array($curl, 
         array(
@@ -122,7 +122,7 @@ class EnrolController extends Controller
         // return response()->json($dosenCMS);
 
         header('Content-Type: text/plain');
-		$buatkategori = Response::DomainLMS . '/webservice/rest/server.php'.'?wstoken=' . Response::TokenLMS . '&moodlewsrestformat=json&wsfunction=core_user_create_users';
+		$buatkategori = session('DomainLMS') . '/webservice/rest/server.php'.'?wstoken=' . session('TokenLMS') . '&moodlewsrestformat=json&wsfunction=core_user_create_users';
 
 		$curl = new curl;
 		$injek = $curl->post($buatkategori, $data);
@@ -170,7 +170,7 @@ class EnrolController extends Controller
         // return $data;
 
         header('Content-Type: text/plain');
-		$buatkategori = Response::DomainLMS . '/webservice/rest/server.php'.'?wstoken=' . Response::TokenLMS . '&moodlewsrestformat=json&wsfunction=enrol_manual_enrol_users';
+		$buatkategori = session('DomainLMS') . '/webservice/rest/server.php'.'?wstoken=' . session('TokenLMS') . '&moodlewsrestformat=json&wsfunction=enrol_manual_enrol_users';
 
 		$curl = new curl;
 		$injek = $curl->post($buatkategori, $data);
@@ -228,7 +228,7 @@ class EnrolController extends Controller
             'kode_mk' => $kodeMK,
             'kode_prodi' => $kodeProdi,
         );
-        $url= "http://apisia.unm.ac.id/cms-mahasiswa-per-mk-semester?h=cms-apisia-4b72926408f7ggfa93946&app=cms-lms";
+        $url= session('DomainSIA')."/cms-mahasiswa-per-mk-semester?h=".session('HeaderSIA')."&app=".session('AppSIA')."";
 
         curl_setopt_array($curl, 
         array(
@@ -253,6 +253,10 @@ class EnrolController extends Controller
         // var_dump($data);
         curl_close($curl);
         return $data['data'];
+    }
+    public function EnrolMahasiswaMK(Request $request)
+    {
+        
     }
     public function edit()
     {

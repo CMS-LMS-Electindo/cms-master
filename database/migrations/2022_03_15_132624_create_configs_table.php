@@ -19,11 +19,18 @@ class CreateConfigsTable extends Migration
             $table->string('nama_pt');
             $table->string('nama_app');
             $table->string('domain_pt');
+            $table->string('domain_lms')->nullable();
+            $table->string('domain_api')->nullable();
             $table->string('email_pt')->nullable();
             $table->string('desc')->nullable();
             $table->string('add_course')->nullable(); //Config Penambahan MK Type 1,2,3
             $table->string('req_course')->nullable(); //Config Jenis Pembuatan MK Buat langsung atau paksa buat dgn rppe
             $table->string('active')->nullable();
+            $table->string('token_auth')->nullable();
+            $table->string('token_lms')->nullable();
+            $table->string('token_sia')->nullable();
+            $table->string('app_sia')->nullable();
+            
             
             $table->timestamps();
         });

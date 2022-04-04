@@ -14,11 +14,17 @@ class Config extends Model
         'nama_app',
         'nama_pt',
         'domain_pt',
+        'domain_lms',
+        'domain_api',
         'email_pt',
         'add_course',
         'req_course',
         'active',
-        'desc'
+        'desc',
+        'token_lms',
+        'token_auth',
+        'token_sia',
+        'app_sia'
 
     ];
 }
