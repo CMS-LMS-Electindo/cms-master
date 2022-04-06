@@ -235,12 +235,9 @@
   });
   function getdata(){
     // console.log(tahun);
-     var table = $('#tabel').DataTable();
-    table.destroy();
+    //  var table = $('#tabel').DataTable();
+    // table.destroy();
     var table = $('#tabel').DataTable({
-        
-      // "scrollY": "200px",
-      "scrollCollapse": true,
       processing: false,
       serverSide: true,
       ajax:{
@@ -249,7 +246,6 @@
         "type": "GET",
         "data":{ _token: "{{csrf_token()}}"}
       },
-      // ajax: "{{ ('/nomor-surat') }}",
       columns: [
           {
               data: 'DT_RowIndex', 
