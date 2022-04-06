@@ -561,7 +561,7 @@ class MataKuliahController extends Controller
         $curl = curl_init();
         $url ='';
         $postAr = [];
-        $url= Response::DomainSIA."/cms-detail-mk?h=".Response::HeaderSIA."&app=".Response::AppSIA;
+        $url= session('DomainSIA')."/cms-detail-mk?h=".session('HeaderSIA')."&app=".session('AppSIA');
         $sem = Semester::where('active', 1)->first();
         $semester = $sem->semester;
         $tahunAkademik = $sem->year;
