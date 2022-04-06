@@ -219,7 +219,7 @@
 
 @push('addon-script')
 
-<script src="assets/js/custom/utilities/modals/new-target.js"></script>
+{{-- <script src="assets/js/custom/utilities/modals/new-target.js"></script> --}}
 <script>
 
   $(document).ready(function () {
@@ -359,6 +359,14 @@
         $('#kt_modal_new_target').modal('show');
         $('#inputTitle').html('Ubah '+title);
         $('#semesterName').val(data.name);
+        $('#year').val(data.year);
+        $('#semester').val(data.semester);
+        var sem ='';
+        if (data.semester == 1)
+          sem = "Ganjil";
+        else
+          sem = "Genap";
+        $("#select2-semester-container").html("<span class='select2-selection__placeholder'> "+sem+"</span>");
         $('#config_type').val(data.config_course);
         $("#select2-config_type-container").html("<span class='select2-selection__placeholder'>Type "+data.config_course+"</span>");
         var sp = data.enddate.split("-");
