@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use curl;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -58,6 +59,26 @@ class UserController extends Controller
             </li>
             <li class='breadcrumb-item text-dark'>".$page."</li>";
         return view('admin.user.default',$data);
+    }
+    public function MyProfile(Request $request)
+    {
+        $page = 'Profil Saya ';
+        $parent1 = 'Dashboard ';
+        $data['page'] = $page;
+        $data['toolBarDesc'] = "<li class=\"breadcrumb-item text-muted\">
+            <a href=\"dashboard\" class=\"text-muted text-hover-primary\">Dashboard</a>
+            </li>
+            <li class='breadcrumb-item'>
+                <span class='bullet bg-gray-300 w-5px h-2px'></span>
+            </li>
+            <li class='breadcrumb-item text-dark'>".$page."</li>";
+            // roleName
+        $profil = MstUser::with('Prodi')->where('username', Auth::user()->username)->first();
+        $data['profil'] = $profil;
+        $data['roleName'] = ucfirst(Auth::user()->role->name_role);
+        $data['email'] = Auth::user()->role_id == 4 ? Auth::user()->username."@student.".session('DomainPT') : Auth::user()->username."@".session('DomainPT');
+
+        return view('admin.user.profile',$data);
     }
     public function SyncDosen(Request $request)
     {

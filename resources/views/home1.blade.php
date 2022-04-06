@@ -15,14 +15,14 @@
         <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
           <!--begin::Logo-->
           <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-            <img alt="Logo" src="assets/media/logos/unm.png" class="h-90px" />
+            <img alt="Logo" src="assets/media/logos/electindo.png" class="h-90px" />
           </a>
           <!--end::Logo-->
           <!--begin::Title-->
           <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Course Management System</h1>
           <!--end::Title-->
           <!--begin::Description-->
-          <p class="fw-bold fs-2" style="color: #986923;">Universitas Negeri Makassar
+          <p class="fw-bold fs-2" style="color: #986923;">Elektindo
           </p>
           <!--end::Description-->
         </div>
@@ -45,7 +45,7 @@
             <!--begin::Heading-->
             <div class="text-center mb-10">
               <!--begin::Title-->
-              <h1 class="text-dark mb-3">Sign In to CMS - UNM</h1>
+              <h1 class="text-dark mb-3">Sign In to CMS - Elektindo</h1>
               <!--end::Title-->
               <!--begin::Link-->
               {{-- <div class="text-gray-400 fw-bold fs-4">New Here?
@@ -132,9 +132,7 @@
       <div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
         <!--begin::Links-->
         <div class="d-flex flex-center fw-bold fs-6">
-          <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">About</a>
-          <a href="https://devs.keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">Support</a>
-          <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2" target="_blank">Purchase</a>
+          <a href="home" class="text-muted text-hover-primary px-2" >Version {{session('version_name')}}</a>
         </div>
         <!--end::Links-->
       </div>

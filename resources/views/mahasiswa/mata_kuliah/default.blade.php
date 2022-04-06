@@ -27,8 +27,8 @@
   <div class="card mb-7 mx-5">
     <!--begin::Card body-->
     <div class="card-body">
-      <div class="d-flex align-items-center">
-        <div class="position-relative w-md-400px me-md-2">
+      <div class="align-items-center row">
+        <div class="position-relative  col-md-4 mt-2">
           <span class="svg-icon svg-icon-3 svg-icon-gray-500 position-absolute top-50 translate-middle ms-6">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
@@ -37,39 +37,27 @@
           </span>
           <input type="text" class="form-control form-control-solid ps-10" name="search" id="search" value="" placeholder="Cari Nama / Kode Mata Kuliah" />
         </div>
+        <div class="position-relative col-md-4 mt-2">
+          <span class="svg-icon svg-icon-3 svg-icon-gray-500 position-absolute top-50 translate-middle ms-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
+              <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="black" />
+            </svg>
+          </span>
+          <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Semester" data-hide-search="true" id="semester" name="semester">
+            <option value=""></option>@foreach ($sem as $item)
+            <option value="{{$item->id}}" @php
+                if ($item->active == 1) echo "selected";
+            @endphp >{{$item->name}}</option>
+            @endforeach
+          </select>
+        </div>
         <!--end::Input group-->
         <!--begin:Action-->
-        <div class="d-flex align-items-center">
-          <button type="button" class="btn btn-primary me-5">Cari Mata Kuliah</button>
-          <a id="kt_horizontal_search_advanced_link" class="btn btn-link" data-bs-toggle="collapse" href="#kt_advanced_search_form">Advanced Search</a>
+        <div class="d-flex align-items-center col-md-4 text-center mt-2">
+          <button type="button" class="btn btn-primary me-5" onclick="getdata()">Cari Mata Kuliah</button>
         </div>
         <!--end:Action-->
-      </div>
-      <div class="collapse" id="kt_advanced_search_form">
-        <!--begin::Separator-->
-        <div class="separator separator-dashed mt-9 mb-6"></div>
-        <!--end::Separator-->
-        <!--begin::Row-->
-        <div class="row g-8 mb-8">
-          <div class="col-xxl-5">
-            <!--begin::Row-->
-            <div class="row g-8">
-              <!--begin::Col-->
-              <div class="col-lg-3 col-md-4 col-sm-5">
-                <label class="fs-6 form-label fw-bolder text-dark">Semester</label>
-                <!--begin::Select-->
-                <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Semester" data-hide-search="true" id="semester" name="semester">
-                  <option value=""></option>
-                  <option value="1">Not started</option>
-                </select>
-                <!--end::Select-->
-              </div>
-            </div>
-            <!--end::Row-->
-          </div>
-          <!--end::Col-->
-        </div>
-        <!--end::Row-->
       </div>
     </div>
   </div>
@@ -88,6 +76,43 @@
       </div>
     </div>
   </div>
+  
+<div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+  <!--begin::Modal dialog-->
+  <div class="modal-dialog modal-xl">
+    <!--begin::Modal content-->
+    <div class="modal-content rounded">
+      <!--begin::Modal header-->
+      <div class="modal-header justify-content-end border-0 pb-0">
+        <!--begin::Close-->
+        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+          <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+          <span class="svg-icon svg-icon-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+              <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+            </svg>
+          </span>
+          <!--end::Svg Icon-->
+        </div>
+        <!--end::Close-->
+      </div>
+      <div class="modal-body pt-0 pb-15 px-5 px-xl-20">
+        <div class="mb-13 text-center">
+          <h1 class="mb-3">Detail Mata Kuliah</h1>
+        </div>
+        <div class="d-flex flex-column">
+          <div class="row mt-10" id="modalBodyDetail">
+            
+          </div>
+        </div>
+        <div class="d-flex flex-center flex-row-fluid pt-12">
+          <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 
@@ -112,12 +137,45 @@
     $('[name="endDate"]').flatpickr({ enableTime: !0, dateFormat: "d-m-Y" });
   });
   function getdata(){
-    $.get("{{ url('mata-kuliah-mahasiswa') }}" +'/1/edit', function (data) {
-        $('#mk_view').html('');
-        $('#mk_view').html(data.html);
-        KTMenu.createInstances();
+    // $.get("{{ url('mata-kuliah-mahasiswa') }}" +'/1/edit', function (data) {
+    //     $('#mk_view').html('');
+    //     $('#mk_view').html(data.html);
+    //     KTMenu.createInstances();
+    // })
+    var semester= $("#semester").val();
+    var search = $("#search").val();
+    $.ajax({
+      type: "POST",
+      url: "{{ url('get-mk-mahasiswa') }}",
+        data:{
+          '_token': '{{ csrf_token() }}',semester,search
+      },
+      success: function(response) {
+        // if (response.status==true) {
+          $('#mk_view').html('');
+          $('#mk_view').html(response.html);
+          $("#progressLMS").addClass('d-none');
+          KTMenu.createInstances();
+        // }
+      }
     })
   }
  
+  function detailMK(kode_kurikulum,kode_mk) {
+    $('#kt_modal_new_target').modal('show');
+    $.ajax({
+      type: "POST",
+      url: "{{ url('get-detail-mk') }}",
+        data:{
+          '_token': '{{ csrf_token() }}',kode_kurikulum,kode_mk,
+      },
+      success: function(response) {
+          if (response.status==true) {
+            $("#modalBodyDetail").html(response.html);
+          } else{
+          }
+      }
+    })
+  }
 </script>
 @endpush

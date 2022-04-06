@@ -16,4 +16,7 @@ class MstUser extends Model
         'code_fakultas',
         'id_lms',
     ];
+    public function Prodi(){
+        return $this->hasOne(Category::class,'code_sia','code_prodi');
+    }
 }

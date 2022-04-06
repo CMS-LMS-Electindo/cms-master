@@ -28,18 +28,23 @@ class MataKuliahMahasiswaController extends Controller
                 <span class='bullet bg-gray-300 w-5px h-2px'></span>
             </li>
             <li class='breadcrumb-item text-dark'>".$page."</li>";
+        $data['sem'] =Semester::orderBy('year', 'desc')->orderBy('semester', 'desc')->get();
         // $data['mk'] = $this->edit;
         return view('mahasiswa.mata_kuliah.default',$data);
     }
     
-    public function edit()
+    public function getMkMahasiswa(Request $request)
     {
         $curl = curl_init();
         $url ='';
         $postAr = [];
-        $url= Response::DomainSIA."/cms-mahasiswa-mk-semester?h=".Response::HeaderSIA."&app=".Response::AppSIA;
+        $url= session('DomainSIA')."/cms-mahasiswa-mk-semester?h=".session('HeaderSIA')."&app=".session('AppSIA');
+        // $url= Response::DomainSIA."/cms-mahasiswa-mk-semester?h=".Response::HeaderSIA."&app=".Response::AppSIA;
 
-        $sem = Semester::where('active', 1)->first();
+        $sem = Semester::where('id', $request->id)->first();
+        if ($request->id == null)
+          $sem = Semester::where('active', 1)->first();
+
         $semester = $sem->semester;
         $tahunAkademik = $sem->year;
         $mulai= $sem->startdate . ' 00:00:00';
@@ -58,6 +63,10 @@ class MataKuliahMahasiswaController extends Controller
             $postAr['kode_mahasiswa'] = $kode_mahasiswa;
         }else{
             $postAr['kode_mahasiswa'] = '0003117804';
+        }
+
+        if ($request->search !== null){
+          $postAr['search'] =$request->search; 
         }
 
         curl_setopt_array($curl, 
@@ -143,7 +152,7 @@ class MataKuliahMahasiswaController extends Controller
                     </a>
                   </div>
                   <div class=" m-2">
-                    <a href="#"  class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary"  style="width: auto;">
+                    <a href="#"  class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary"  style="width: auto;" onclick="detailMK(\''.$data['data'][$i]['kode_kurikulum'].'\',\''.$data['data'][$i]['kode_mk'].'\')">
                       <div class="badge badge-info p-3" style="font-size: 11px;"> 
                         <span class="menu-icon">
                           <i class="bi bi-eye-fill fs-3" style="color: white"></i>
@@ -185,6 +194,7 @@ class MataKuliahMahasiswaController extends Controller
             </div>
             ';
             $result['html'] = $html;
+            $result['req'] = $postAr;
           }
         } catch (\Throwable $th) {
           //throw $th;
@@ -193,11 +203,6 @@ class MataKuliahMahasiswaController extends Controller
             'message'    => $th->getMessage(),
           );
         }
-        // print_r($data);
-
-        // $qMK = Course::where(['idsemester' =>$sem->id, 'code_prodi' =>$nidn])->get();
-
-        
         
         // return $data['data'];
         return response()->json($result);

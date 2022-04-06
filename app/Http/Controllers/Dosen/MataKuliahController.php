@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dosen;
 use curl;
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Config;
 use App\Models\Course;
 use App\Models\Semester;
@@ -14,7 +15,6 @@ use stdClass;
 
 class MataKuliahController extends Controller
 {
-    //
     public function index(Request $request)
     {
         $page = 'Mata Kuliah Reguler ';
@@ -31,18 +31,21 @@ class MataKuliahController extends Controller
                 <span class='bullet bg-gray-300 w-5px h-2px'></span>
             </li>
             <li class='breadcrumb-item text-dark'>".$page."</li>";
-        // $data['mk'] = $this->edit;
+        $data['sem'] =Semester::orderBy('year', 'desc')->orderBy('semester', 'desc')->get();
+        $data['prodi'] =Category::where('parent', '<>', '0')->orderBy('parent', 'asc')->get();
         return view('dosen.mata_kuliah.default',$data);
     }
     
-    public function edit()
+    public function getMkDosen(Request $request)
     {
         $curl = curl_init();
         $url ='';
         $postAr = [];
-        $url= Response::DomainSIA."/cms-dosen-mk-semester?h=".Response::HeaderSIA."&app=".Response::AppSIA;
-
-        $sem = Semester::where('active', 1)->first();
+        $url= session('DomainSIA')."/cms-dosen-mk-semester?h=".session('HeaderSIA')."&app=".session('AppSIA');
+        
+        $sem = Semester::where('id', $request->id)->first();
+        if ($request->id == null)
+          $sem = Semester::where('active', 1)->first();
         $semester = $sem->semester;
         $tahunAkademik = $sem->year;
         $mulai= $sem->startdate . ' 00:00:00';
@@ -61,6 +64,14 @@ class MataKuliahController extends Controller
             $postAr['nidn'] = $nidn;
         }else{
             $postAr['nidn'] = '0003117804';
+        }
+
+        if ($request->kode_prodi !== null){
+          $postAr['kode_prodi'] =$request->kode_prodi; 
+        }
+        
+        if ($request->search !== null){
+          $postAr['search'] =$request->search; 
         }
 
         curl_setopt_array($curl, 
@@ -278,13 +289,16 @@ class MataKuliahController extends Controller
             </div>
             ';
             $result['html'] = $html;
+            $result['req'] = $postAr;
           }
         } catch (\Throwable $th) {
           //throw $th;
           $result = array(
             'status'    => 1,
             'message'    => $th->getMessage(),
+            'html' => "Data Tidak Ditemukan"
           );
+          $result['req'] = $postAr;
         }
         // print_r($data);
 

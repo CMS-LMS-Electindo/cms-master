@@ -40,8 +40,8 @@
         <!--end::Input group-->
         <!--begin:Action-->
         <div class="d-flex align-items-center">
-          <button type="button" class="btn btn-primary me-5">Cari Mata Kuliah</button>
-          <a id="kt_horizontal_search_advanced_link" class="btn btn-link" data-bs-toggle="collapse" href="#kt_advanced_search_form">Advanced Search</a>
+          <button type="button" class="btn btn-primary me-5" onclick="return getdata();">Cari Mata Kuliah</button>
+          <a id="kt_horizontal_search_advanced_link" class="btn btn-link" data-bs-toggle="collapse" href="#kt_advanced_search_form">Filter Mata Kuliah</a>
         </div>
         <!--end:Action-->
       </div>
@@ -60,16 +60,22 @@
                 <!--begin::Select-->
                 <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Semester" data-hide-search="true" id="semester" name="semester">
                   <option value=""></option>
-                  <option value="1">Not started</option>
+                  @foreach ($sem as $item)
+                  <option value="{{$item->id}}" @php
+                      if ($item->active == 1) echo "selected";
+                  @endphp >{{$item->name}}</option>
+                  @endforeach
                 </select>
                 <!--end::Select-->
               </div>
               <div class="col-lg-9 col-md-8 col-sm-7">
                 <label class="fs-6 form-label fw-bolder text-dark">Program Studi</label>
                 <!--begin::Select-->
-                <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Program Studi" data-hide-search="true" id="prodi" name="prodi">
+                <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Program Studi"  id="prodiddl" name="prodiddl">
                   <option value=""></option>
-                  <option value="1">Not started</option>
+                  @foreach ($prodi as $item)
+                  <option value="{{$item->code_sia}}" >{{$item->name}}</option>
+                  @endforeach
                 </select>
                 <!--end::Select-->
               </div>
@@ -121,7 +127,7 @@
     <!--end::Header-->
     <!--begin::Body-->
     <div class="card-body py-3">
-      <div class="mb-xl-8 bg-light-warning rounded p-4 border-danger border border-dashed">
+      {{-- <div class="mb-xl-8 bg-light-warning rounded p-4 border-danger border border-dashed">
         <div class="card-header border-0 mb-3" style="min-height: auto; justify-content: start; z-index: 1;">
           <div class=" m-2">
             <button type="button" class="btn btn-sm btn-icon btn-color-light-dark btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" style="width: auto;">
@@ -281,7 +287,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
       <div class="row g-5 g-xl-8" id="mk_view">
         
           {{-- <div class="col-xl-12">
@@ -525,13 +531,23 @@
     $('[name="endDate"]').flatpickr({ enableTime: !0, dateFormat: "d-m-Y" });
   });
   function getdata(){
-    $.get("{{ url('mata-kuliah') }}" +'/1/edit', function (data) {
-        $('#mk_view').html('');
-        $('#mk_view').html(data.html);
-        $("#progressLMS").addClass('d-none');
-        KTMenu.createInstances();
-      // var menuElement = document.querySelector("#kt_menu");
-      // var menu = KTMenu.getInstance(menuElement);
+    var kode_prodi = $("#prodiddl").val();
+    var semester= $("#semester").val();
+    var search = $("#search").val();
+    $.ajax({
+      type: "POST",
+      url: "{{ url('get-mk-dosen') }}",
+        data:{
+          '_token': '{{ csrf_token() }}',kode_prodi,semester,search
+      },
+      success: function(response) {
+        // if (response.status==true) {
+          $('#mk_view').html('');
+          $('#mk_view').html(response.html);
+          $("#progressLMS").addClass('d-none');
+          KTMenu.createInstances();
+        // }
+      }
     })
   }
   

@@ -14,14 +14,14 @@ class Response
      *
      * @var array
      */
-    public const TokenLMS = '6a2a623594e388b348277f12d8a77be2';
-    public const TokenLMSAdmin = '355bd52d8188b98c2216e8523481af80';
-    public const TokenLMSAuth = '4faa1c732f21754873e7d972783a79c9';
+    // public const TokenLMS = '6a2a623594e388b348277f12d8a77be2';
+    // public const TokenLMSAdmin = '355bd52d8188b98c2216e8523481af80';
+    // public const TokenLMSAuth = '4faa1c732f21754873e7d972783a79c9';
     
-    public const DomainLMS = 'https://lms.electindo.com';
-    public const DomainSIA = 'http://apisia.unm.ac.id';
-    public const HeaderSIA = 'cms-apisia-4b72926408f7ggfa93946';
-    public const AppSIA = 'cms-lms';
+    // public const DomainLMS = 'https://lms.electindo.com';
+    // public const DomainSIA = 'http://apisia.unm.ac.id';
+    // public const HeaderSIA = 'cms-apisia-4b72926408f7ggfa93946';
+    // public const AppSIA = 'cms-lms';
 
     protected static $response = [
         'meta' => [

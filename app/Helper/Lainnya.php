@@ -9,6 +9,7 @@ use App\MasterDekan;
 use App\Models\Config;
 use App\Models\Dosen;
 use App\Models\MataKuliah;
+use App\Models\Version;
 use App\Notifikasi;
 use App\Pengesahan;
 use App\Profil;
@@ -59,15 +60,25 @@ class Lainnya
 	// }
 	public static function setSessionToken()
     {
-        $dosen = Config::where('active',1)->first();
-		if ($dosen){
-			session(['TokenLMS' => $dosen->token_lms]);
-			session(['TokenLMSAuth' => $dosen->token_auth]);
-			session(['DomainLMS' => $dosen->domain_lms]);
-			session(['DomainSIA' => $dosen->domain_api]);
-			session(['HeaderSIA' => $dosen->token_sia]);
-			session(['AppSIA' => $dosen->app_sia]);
-		}
+		// if (session()->has('namaApp')) {
+			$dosen = Config::where('active',1)->first();
+			$version = Version::where('active',1)->first();
+			if ($dosen){
+				session(['TokenLMS' => $dosen->token_lms]);
+				session(['TokenLMSAuth' => $dosen->token_auth]);
+				session(['DomainLMS' => $dosen->domain_lms]);
+				session(['DomainPT' => $dosen->domain_pt]);
+				session(['DomainSIA' => $dosen->domain_api]);
+				session(['HeaderSIA' => $dosen->token_sia]);
+				session(['AppSIA' => $dosen->app_sia]);
+				session(['namaApp' => $dosen->nama_app]);
+				session(['namaPT' => $dosen->nama_pt]);
+
+				session(['version_name' => $version->version_name]);
+				session(['version_number' => $version->version_number]);
+				session(['desc' => $version->desc]);
+			}
+		// }
         return 1;
     }
 	
