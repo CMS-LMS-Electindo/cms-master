@@ -235,8 +235,8 @@
   });
   function getdata(){
     // console.log(tahun);
-    //  var table = $('#tabel').DataTable();
-    // table.destroy();
+     var table = $('#tabel').DataTable();
+    table.destroy();
     var table = $('#tabel').DataTable({
       processing: false,
       serverSide: true,
