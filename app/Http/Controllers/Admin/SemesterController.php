@@ -74,10 +74,10 @@ class SemesterController extends Controller
                        
                         <span class="text-muted fw-bold text-muted d-block fs-7">'.$row->startdate.' - '.$row->enddate.'</span>
                     </div>
-                </div>';
-                
-                //  <span class="text-muted fw-bold text-muted d-block fs-7">'.Tanggal::TanggalIndo($row->startdate).' - '.Tanggal::TanggalIndo($row->end).'</span>
-                    return $btn;
+                    </div>';
+                    
+                    //  <span class="text-muted fw-bold text-muted d-block fs-7">'.Tanggal::TanggalIndo($row->startdate).' - '.Tanggal::TanggalIndo($row->end).'</span>
+                        return $btn;
                 })
                 ->rawColumns(['action','nama','config','aktif'])
                 ->make(true);
