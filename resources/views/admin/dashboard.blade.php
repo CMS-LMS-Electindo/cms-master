@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="row mb-5 mb-xl-8 m-5">
-    <div class="col-xl-3 ps-0">
+    <div class="col-xl-3 mb-3 px-0">
         <!--begin::Statistics Widget 5-->
         <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
             <!--begin::Body-->
@@ -61,7 +61,7 @@
         </a>
         <!--end::Statistics Widget 5-->
     </div>
-    <div class="col-xl-3">
+    <div class="col-xl-3 mb-3 px-0">
         <!--begin::Statistics Widget 5-->
         <a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
             <!--begin::Body-->
@@ -82,7 +82,7 @@
         </a>
         <!--end::Statistics Widget 5-->
     </div>
-    <div class="col-xl-3">
+    <div class="col-xl-3 mb-3 px-0">
         <!--begin::Statistics Widget 5-->
         <a href="#" class="card bg-warning hoverable card-xl-stretch mb-xl-8">
             <!--begin::Body-->
@@ -102,7 +102,7 @@
         </a>
         <!--end::Statistics Widget 5-->
     </div>
-    <div class="col-xl-3 pe-0">
+    <div class="col-xl-3 mb-3 px-0">
         <!--begin::Statistics Widget 5-->
         <a href="#" class="card bg-info hoverable card-xl-stretch mb-5 mb-xl-8">
             <!--begin::Body-->

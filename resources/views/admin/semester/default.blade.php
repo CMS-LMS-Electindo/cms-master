@@ -246,6 +246,7 @@
         "type": "GET",
         "data":{ _token: "{{csrf_token()}}"}
       },
+      
       columns: [
           {
               data: 'DT_RowIndex', 
@@ -255,7 +256,7 @@
           {data: 'nama', name: 'nama'},
           {data: 'config', name: 'config',},
           {data: 'aktif', name: 'aktif',},
-          {data: 'action', name: 'action', orderable: false, searchable: false},
+          {data: 'action', name: 'action', orderable: false, searchable: false,visible: true,},
       ],
       language:{paginate:{
           previous:"<i class='mdi mdi-chevron-left'>",
@@ -265,6 +266,7 @@
           $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
       }
     });
+    table.draw( true );
 
     $('.dataTables_length').addClass('bs-select');
     $('[data-toggle="select2"]').select2();
