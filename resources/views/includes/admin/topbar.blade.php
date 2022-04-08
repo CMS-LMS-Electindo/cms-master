@@ -18,7 +18,7 @@
       <!--begin::Mobile logo-->
       <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
           <a href="dashboard" class="d-lg-none">
-              <img alt="Logo" src="assets/media/logos/electindo.png" class="h-30px" />
+              <img alt="Logo" src="assets/media/logos/logo-gelap.png" class="h-30px" />
           </a>
       </div>
       <!--end::Mobile logo-->
@@ -34,62 +34,81 @@
                         
                         <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1 ">
                             <span class="menu-link py-3">
-                                    <span class="menu-title">Sumber Belajar</span>
+                                <span class="menu-icon me-0">
+                                    <span class="svg-icon svg-icon-2">
+                                        <img src="assets/media/icons/duotune/maps/map001.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                    </span>
+                                </span>
+                                <span class="menu-title">Sumber Belajar</span>
                             <span class="menu-arrow d-lg-none"></span>
                             </span>
                             <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://e-resources.perpusnas.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/ecommerce/ecm007.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">Perpusnas</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://kbbi.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/communication/com012.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">KBBI Daring</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://belajar.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/general/gen020.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">Rumah Belajar</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://scholar.google.com/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/general/gen056.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">Google Scholar </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://garuda.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/general/gen022.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">Garuda	</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://doaj.org/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/general/gen016.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">DOAJ </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://www.sciencedirect.com/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/abstract/abs045.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">ScienceDirect </span>
                                     </a>
@@ -98,38 +117,51 @@
                         </div>
                         <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1 ">
                             <span class="menu-link py-3">
+                                <span class="menu-icon me-0">
+                                    <span class="svg-icon svg-icon-2">
+                                        <img src="assets/media/icons/duotune/general/gen022.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                    </span>
+                                </span>
                                     <span class="menu-title">Dosen</span>
                             <span class="menu-arrow d-lg-none"></span>
                             </span>
                             <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://sinta3.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/technology/teh008.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">SINTA </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="http://simlitabmas.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/medicine/med005.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">SIMLITABMAS </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://anjani.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/abstract/abs027.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">ANJANI	 </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://pak.kemdikbud.go.id/portalv2/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/general/gen002.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">PAK </span>
                                     </a>
@@ -138,38 +170,51 @@
                         </div>
                         <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1 ">
                             <span class="menu-link py-3">
+                                <span class="menu-icon me-0">
+                                    <span class="svg-icon svg-icon-2">
+                                        <img src="assets/media/icons/duotune/general/gen016.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                    </span>
+                                </span>
                                     <span class="menu-title">Mahasiswa</span>
                             <span class="menu-arrow d-lg-none"></span>
                             </span>
                             <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://beasiswalpdp.kemenkeu.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/finance/fin002.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">Beasiswa </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="http://tracerstudy.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/communication/com005.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">Tracer Study </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://kampusmerdeka.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/maps/map001.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">Kampus Merdeka </span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="https://simbelmawa.kemdikbud.go.id/" target="_blank">
-                                        <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
+                                        <span class="menu-icon">
+                                            <span class="svg-icon svg-icon-2">
+                                                <img src="assets/media/icons/duotune/abstract/abs037.svg" width="16" height="16" viewBox="0 0 16 16" fill="none"/>
+                                            </span>
                                         </span>
                                         <span class="menu-title">PKM </span>
                                     </a>

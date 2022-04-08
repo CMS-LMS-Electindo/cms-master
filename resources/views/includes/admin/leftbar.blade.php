@@ -2,7 +2,7 @@
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <a href="dashboard">
-            <img alt="Logo" src="assets/media/logos/electindo.png" class="h-75px logo" />
+            <img alt="Logo" src="assets/media/logos/logo-putih.png" class="h-40px logo" />
         </a>
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
             <span class="svg-icon svg-icon-1 rotate-180">
