@@ -80,7 +80,7 @@ class SemesterController extends Controller
                         return $btn;
                 })
                 ->rawColumns(['action','nama','config','aktif'])
-                ->make(true);
+                ->make();
         }
         $page = 'Data Semester ';
         $parent1 = 'Master Data ';
