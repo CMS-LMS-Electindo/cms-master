@@ -2,15 +2,9 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\Helpers\Lainnya;
-use App\Helpers\Response;
-use curl;
-use App\Models\User;
-
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 trait AuthenticatesUsers
@@ -24,8 +18,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        Lainnya::setSessionToken();
-        return view('home1');
+        return view('auth.login');
     }
 
     /**
@@ -38,68 +31,8 @@ trait AuthenticatesUsers
      */
     public function login(Request $request)
     {
-        Lainnya::setSessionToken();
         $this->validateLogin($request);
 
-        // get API SIA
-        $curl = curl_init();
-        $url ='';
-        $postAr = [
-            'username' => $request->username,
-            'password' => $request->password
-        ];
-        // $url= Response::DomainSIA."/cms-login?h=".Response::HeaderSIA."&app=".Response::AppSIA;
-        $url= session('DomainSIA')."/cms-login?h=".session('HeaderSIA')."&app=".session('AppSIA');
-
-        curl_setopt_array($curl, 
-        array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $postAr,
-            CURLOPT_HTTPHEADER => array(
-                'Cookie: ci_session=f7e9286e42f285d6ecb4028cd78bf2499af77a7f'
-            )
-        ));
-
-        $response = curl_exec($curl);
-        $data = json_decode($response, TRUE);
-        curl_close($curl);
-        if ($data['status'] == 1){
-            if ($data['usergroup'] == 'dosen'){
-                $roleId = 3;
-                $email = $request->username.'@unm.ac.id';
-                
-                $userCms = User::where('username', $request->username)->count();
-                if ($userCms == 0)
-                    $u = $this->CreateUser($request->username,$request->password,$data['nama'],$email,$roleId);
-                else
-                    $u = $this->UpdateUser($request->username, $request->password);
-            }elseif ($data['usergroup'] == 'mahasiswa'){
-                $roleId = 4;
-                $email = $request->username.'@student.unm.ac.id';
-
-                $userCms = User::where('username', $request->username)->count();
-                if ($userCms == 0)
-                    $u = $this->CreateUser($request->username,$request->password,$data['nama'],$email,$roleId);
-                else
-                    $u = $this->UpdateUser($request->username, $request->password);
-            }
-            
-        }
-            // var_dump( $data);
-        // } catch (\Throwable $th) {
-        //     $result = array(
-        //         'status'    => 1,
-        //         'message'    => $th->getMessage(),
-        //     );
-        //     var_dump( $result);
-        // }
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -112,7 +45,6 @@ trait AuthenticatesUsers
 
         if ($this->attemptLogin($request)) {
             if ($request->hasSession()) {
-                Lainnya::setSessionToken();
                 $request->session()->put('auth.password_confirmed_at', time());
             }
 
@@ -126,26 +58,7 @@ trait AuthenticatesUsers
 
         return $this->sendFailedLoginResponse($request);
     }
-    function CreateUser($username, $password, $nama,$email,$roleId)
-    {
-        $user = User::create([
-            'username' => $username,
-            'name' => $nama,
-            'email' => $email,
-            'role_id' => $roleId,
-            'password' => Hash::make($password),
-        ]);
-        return $user;
-    }
-    function UpdateUser($username, $password)
-    {
-        $data = array(
-            'password' =>  Hash::make($password),
-        );
-        $user = User::where('username', $username)
-        ->update($data);
-        return $user;
-    }
+
     /**
      * Validate the user login request.
      *
