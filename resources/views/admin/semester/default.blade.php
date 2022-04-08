@@ -266,7 +266,7 @@
           $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
       }
     });
-    table.draw( true );
+    // table.draw( true );
 
     $('.dataTables_length').addClass('bs-select');
     $('[data-toggle="select2"]').select2();
