@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    {{ session('applicationName') }}
+    {{ session('namaApp') }}
 @endsection
 
 @section('content')
@@ -15,14 +15,14 @@
         <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
           <!--begin::Logo-->
           <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-            <img alt="Logo" src="assets/media/logos/logo-gelap.png" class="h-90px" />
+            <img alt="Logo" src="{{ session('logo_gelap') }}" class="h-90px" />
           </a>
           <!--end::Logo-->
           <!--begin::Title-->
-          <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Course Management System</h1>
+          <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to {{ session('namaApp') }}</h1>
           <!--end::Title-->
           <!--begin::Description-->
-          <p class="fw-bold fs-2" style="color: #986923;">Universitas Perjuangan Republik Indonesia
+          <p class="fw-bold fs-2" style="color: #986923;">{{ session('namaPT') }}
           </p>
           <!--end::Description-->
         </div>
@@ -45,7 +45,7 @@
             <!--begin::Heading-->
             <div class="text-center mb-10">
               <!--begin::Title-->
-              <h1 class="text-dark mb-3">Sign In to CMS - UPRI</h1>
+              <h1 class="text-dark mb-3">Sign In to {{ session('namaApp') }}</h1>
               <!--end::Title-->
               <!--begin::Link-->
               {{-- <div class="text-gray-400 fw-bold fs-4">New Here?

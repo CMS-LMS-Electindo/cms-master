@@ -92,6 +92,14 @@ class CategoryController extends Controller
         $categoryCMS = array();
         $categories = array();
         $i=0;
+        if (!isset($fakultas['data'])){
+            $return = array(
+                'status'    => 0,
+                'fakultas' => $fakultas,
+                'message'    => "Data Kategori Fakultas Tidak Ditemukan, Mohon Cek API Anda!",
+            );
+            return response()->json($return);
+        }
         foreach ($fakultas['data'] as $list) {
             $category = array(
                 'name'=>$list['nama_fakultas'],
@@ -163,7 +171,6 @@ class CategoryController extends Controller
                     break;
                 }
             }
-
             $category = array(
                 'name'=>$list['nama_prodi'],
                 'idnumber'=>$list['kode_prodi'],

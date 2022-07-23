@@ -4,7 +4,7 @@
 @endpush
 
 @section('title')
-    {{$page}} :: {{session('applicationName')}}
+    {{$page}} :: {{session('namaApp')}}
 @endsection
 
 @section('content')
@@ -213,6 +213,143 @@
               <textarea class="form-control form-control-solid" rows="3" name="desc" id="desc" placeholder="Type Deskripsi"></textarea>
             </div>
           </div>
+          <div class="row g-9 mb-8">
+            <div class="col-md-4 fv-row">
+              <!--begin::Image input-->
+              <label class="fs-6 fw-bold mb-2">Logo Utama</label> <br>
+              <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
+                <!--begin::Image preview wrapper-->
+                <div id="divLogo" class="image-input-wrapper w-125px h-125px" style="background-image: url()"></div>
+                <!--end::Image preview wrapper-->
+
+                <!--begin::Edit button-->
+                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="change"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Change avatar">
+                    <i class="bi bi-pencil-fill fs-7"></i>
+
+                    <!--begin::Inputs-->
+                    <input type="file"  accept=".png, .jpg, .jpeg" id="logo" name="logo" />
+                    <input type="hidden" name="avatar_remove" />
+                    <!--end::Inputs-->
+                </label>
+                <!--end::Edit button-->
+
+                <!--begin::Cancel button-->
+                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="cancel"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Cancel avatar">
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                <!--end::Cancel button-->
+
+                <!--begin::Remove button-->
+                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="remove"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Remove avatar">
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                <!--end::Remove button-->
+              </div>
+              <!--end::Image input-->
+            </div>
+            <div class="col-md-4 fv-row">
+              <!--begin::Image input-->
+              <label class="fs-6 fw-bold mb-2">Logo Gelap</label> <br>
+              <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
+                <!--begin::Image preview wrapper-->
+                <div id="divLogoGelap" class="image-input-wrapper w-125px h-125px" style="background-image: url()"></div>
+                <!--end::Image preview wrapper-->
+
+                <!--begin::Edit button-->
+                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="change"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Change avatar">
+                    <i class="bi bi-pencil-fill fs-7"></i>
+
+                    <!--begin::Inputs-->
+                    <input type="file"  accept=".png, .jpg, .jpeg" id="logo_gelap" name="logo_gelap"/>
+                    <input type="hidden" name="avatar_remove" />
+                    <!--end::Inputs-->
+                </label>
+                <!--end::Edit button-->
+
+                <!--begin::Cancel button-->
+                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="cancel"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Cancel avatar">
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                <!--end::Cancel button-->
+
+                <!--begin::Remove button-->
+                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="remove"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Remove avatar">
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                <!--end::Remove button-->
+              </div>
+              <!--end::Image input-->
+            </div>
+            <div class="col-md-4 fv-row">
+              <!--begin::Image input-->
+              <label class="fs-6 fw-bold mb-2">Logo Terang</label> <br>
+              <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(/assets/media/svg/avatars/blank.svg)">
+                <!--begin::Image preview wrapper-->
+                <div id="divLogoTerang" class="image-input-wrapper w-125px h-125px" style="background-image: url()"></div>
+                <!--end::Image preview wrapper-->
+
+                <!--begin::Edit button-->
+                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="change"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Change avatar">
+                    <i class="bi bi-pencil-fill fs-7"></i>
+
+                    <!--begin::Inputs-->
+                    <input type="file"  accept=".png, .jpg, .jpeg" id="logo_terang" name="logo_terang"/>
+                    <input type="hidden" name="avatar_remove" />
+                    <!--end::Inputs-->
+                </label>
+                <!--end::Edit button-->
+
+                <!--begin::Cancel button-->
+                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="cancel"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Cancel avatar">
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                <!--end::Cancel button-->
+
+                <!--begin::Remove button-->
+                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="remove"
+                  data-bs-toggle="tooltip"
+                  data-bs-dismiss="click"
+                  title="Remove avatar">
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                <!--end::Remove button-->
+              </div>
+              <!--end::Image input-->
+            </div>
+          </div>
           <div class="text-center">
             <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
             <button type="button" id="kt_modal_new_target_submit" class="btn btn-primary save">
@@ -394,6 +531,9 @@
         $('#keyApiSia').val(data.app_sia);
         $('#token_sia').val(data.token_sia);
         $("#select2-config_req-container").html("<span class='select2-selection__placeholder'>"+data.req_course+"</span>");
+        $('#divLogo').css('background-image','url(/assets/media/logos/'+data.logo);
+        $('#divLogoTerang').css('background-image','url(/assets/media/logos/'+data.logo_terang);
+        $('#divLogoGelap').css('background-image','url(/assets/media/logos/'+data.logo_gelap);
         
     })
   }

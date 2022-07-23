@@ -156,6 +156,28 @@ class ConfigController extends Controller
             'req_course' =>  $request->config_req,
             'desc' =>  $request->desc,
         );
+        if (!empty($_FILES['logo']['name'])) {
+            $file = $request->file('logo');
+            $extension = $file->getClientOriginalExtension();
+            $filenameLogo = 'logo'."_" . time() . '.' . $extension;
+            $file->move('assets/media/logos/', $filenameLogo);
+            $data['logo']= $filenameLogo;
+        }
+        if (!empty($_FILES['logo_gelap']['name'])) {
+            $file = $request->file('logo_gelap');
+            $extension = $file->getClientOriginalExtension();
+            $filenameLogoGelap = 'logo_gelap'."_" . time() . '.' . $extension;
+            $file->move('assets/media/logos/', $filenameLogoGelap);
+            $data['logo_gelap']= $filenameLogoGelap;
+        }
+        if (!empty($_FILES['logo_terang']['name'])) {
+            $file = $request->file('logo_terang');
+            $extension = $file->getClientOriginalExtension();
+            $filenameLogoTerang = 'logo_terang'."_" . time() . '.' . $extension;
+            $file->move('assets/media/logos/', $filenameLogoTerang);
+            $data['logo_terang']= $filenameLogoTerang;
+        }
+      
        if ($request->kode != null){
            Config::where('id', $request->kode)
                ->update($data);

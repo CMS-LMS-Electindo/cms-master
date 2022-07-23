@@ -188,7 +188,7 @@ class EnrolController extends Controller
         $qMhs = $this->ambilMahasiswaSia($request->kode_mk,$request->kode_kurikulum,$request->kode_prodi,$semester, $tahun);
         $domain = Config::where("active", 1)->first()->domain_pt;
         // return response()->json($domain);
-
+        $enrol = '';
         for ($i=0; $i < count($qMhs); $i++) { 
             $dosen = MstUser::where('username', $qMhs[$i]['kode_mahasiswa'])->first();
             if (isset($dosen->id_lms)){

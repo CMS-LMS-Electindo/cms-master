@@ -4,7 +4,7 @@
 @endpush
 
 @section('title')
-    {{$page}} :: {{session('applicationName')}}
+    {{$page}} :: {{session('namaApp')}}
 @endsection
 
 @section('content')

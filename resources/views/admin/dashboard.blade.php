@@ -1,7 +1,7 @@
 @extends('layouts.das')
 
 @section('title')
-    {{$page}} :: {{session('applicationName')}}
+    {{$page}} :: {{session('namaApp')}}
 @endsection
 
 @section('content')

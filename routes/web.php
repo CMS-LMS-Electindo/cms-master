@@ -31,7 +31,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
 Auth::routes();
 
@@ -83,6 +82,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/sso-lms', [MataKuliahController::class, 'ActionMoodle']);            
         Route::post('/get-detail-mk', [MataKuliahController::class, 'getDetailMK']);
         Route::get('/my-profile', [UserController::class, 'MyProfile']);
+        Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
         
     });
     

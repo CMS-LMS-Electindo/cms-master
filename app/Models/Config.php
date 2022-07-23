@@ -24,7 +24,10 @@ class Config extends Model
         'token_lms',
         'token_auth',
         'token_sia',
-        'app_sia'
+        'app_sia',
+        'logo',
+        'logo_gelap',
+        'logo_terang',
 
     ];
 }

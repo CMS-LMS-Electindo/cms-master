@@ -61,18 +61,21 @@ class Lainnya
 	public static function setSessionToken()
     {
 		// if (session()->has('namaApp')) {
-			$dosen = Config::where('active',1)->first();
+			$config = Config::where('active',1)->first();
 			$version = Version::where('active',1)->first();
-			if ($dosen){
-				session(['TokenLMS' => $dosen->token_lms]);
-				session(['TokenLMSAuth' => $dosen->token_auth]);
-				session(['DomainLMS' => $dosen->domain_lms]);
-				session(['DomainPT' => $dosen->domain_pt]);
-				session(['DomainSIA' => $dosen->domain_api]);
-				session(['HeaderSIA' => $dosen->token_sia]);
-				session(['AppSIA' => $dosen->app_sia]);
-				session(['namaApp' => $dosen->nama_app]);
-				session(['namaPT' => $dosen->nama_pt]);
+			if ($config){
+				session(['TokenLMS' => $config->token_lms]);
+				session(['TokenLMSAuth' => $config->token_auth]);
+				session(['DomainLMS' => $config->domain_lms]);
+				session(['DomainPT' => $config->domain_pt]);
+				session(['DomainSIA' => $config->domain_api]);
+				session(['HeaderSIA' => $config->token_sia]);
+				session(['AppSIA' => $config->app_sia]);
+				session(['namaApp' => $config->nama_app]);
+				session(['namaPT' => $config->nama_pt]);
+				session(['logo' => "assets/media/logos/" . $config->logo]);
+				session(['logo_gelap' => "assets/media/logos/" . $config->logo_gelap]);
+				session(['logo_terang' => "assets/media/logos/" . $config->logo_terang]);
 
 				session(['version_name' => $version->version_name]);
 				session(['version_number' => $version->version_number]);

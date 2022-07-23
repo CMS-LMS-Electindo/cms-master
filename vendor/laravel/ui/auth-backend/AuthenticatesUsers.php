@@ -73,7 +73,7 @@ trait AuthenticatesUsers
         if ($data['status'] == 1){
             if ($data['usergroup'] == 'dosen'){
                 $roleId = 3;
-                $email = $request->username.'@unm.ac.id';
+                $email = $request->username.'@umpar.ac.id';
                 
                 $userCms = User::where('username', $request->username)->count();
                 if ($userCms == 0)
@@ -82,7 +82,7 @@ trait AuthenticatesUsers
                     $u = $this->UpdateUser($request->username, $request->password);
             }elseif ($data['usergroup'] == 'mahasiswa'){
                 $roleId = 4;
-                $email = $request->username.'@student.unm.ac.id';
+                $email = $request->username.'@student.umpar.ac.id';
 
                 $userCms = User::where('username', $request->username)->count();
                 if ($userCms == 0)

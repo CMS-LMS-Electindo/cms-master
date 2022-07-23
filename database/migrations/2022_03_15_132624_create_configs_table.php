@@ -30,6 +30,9 @@ class CreateConfigsTable extends Migration
             $table->string('token_lms')->nullable();
             $table->string('token_sia')->nullable();
             $table->string('app_sia')->nullable();
+            $table->text('logo')->nullable();
+            $table->text('logo_gelap')->nullable();
+            $table->text('logo_terang')->nullable();
             
             
             $table->timestamps();

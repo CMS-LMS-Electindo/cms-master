@@ -4,7 +4,7 @@
 @endpush
 
 @section('title')
-    {{$page}} :: {{session('applicationName')}}
+    {{$page}} :: {{session('namaApp')}}
 @endsection
 
 @section('content')
@@ -152,7 +152,7 @@
           $(".sync-fakultas").removeClass("btn-light");
                 $.ajax({
                 type: "POST",
-                url: "{{ url('sync-category-prodi') }}",
+                url: "{{ url('sync-category-fakultas') }}",
                   data:{
                     '_token': '{{ csrf_token() }}',
                 },
