@@ -70,27 +70,28 @@ trait AuthenticatesUsers
         $response = curl_exec($curl);
         $data = json_decode($response, TRUE);
         curl_close($curl);
-        if ($data['status'] == 1){
-            if ($data['usergroup'] == 'dosen'){
-                $roleId = 3;
-                $email = $request->username.'@umpar.ac.id';
-                
-                $userCms = User::where('username', $request->username)->count();
-                if ($userCms == 0)
-                    $u = $this->CreateUser($request->username,$request->password,$data['nama'],$email,$roleId);
-                else
-                    $u = $this->UpdateUser($request->username, $request->password);
-            }elseif ($data['usergroup'] == 'mahasiswa'){
-                $roleId = 4;
-                $email = $request->username.'@student.umpar.ac.id';
+        if (isset($data['status']) == 1){
+            if ($data['status'] == 1){
+                if ($data['usergroup'] == 'dosen'){
+                    $roleId = 3;
+                    $email = $request->username.'@umpar.ac.id';
+                    
+                    $userCms = User::where('username', $request->username)->count();
+                    if ($userCms == 0)
+                        $u = $this->CreateUser($request->username,$request->password,$data['nama'],$email,$roleId);
+                    else
+                        $u = $this->UpdateUser($request->username, $request->password);
+                }elseif ($data['usergroup'] == 'mahasiswa'){
+                    $roleId = 4;
+                    $email = $request->username.'@student.umpar.ac.id';
 
-                $userCms = User::where('username', $request->username)->count();
-                if ($userCms == 0)
-                    $u = $this->CreateUser($request->username,$request->password,$data['nama'],$email,$roleId);
-                else
-                    $u = $this->UpdateUser($request->username, $request->password);
+                    $userCms = User::where('username', $request->username)->count();
+                    if ($userCms == 0)
+                        $u = $this->CreateUser($request->username,$request->password,$data['nama'],$email,$roleId);
+                    else
+                        $u = $this->UpdateUser($request->username, $request->password);
+                }
             }
-            
         }
             // var_dump( $data);
         // } catch (\Throwable $th) {
