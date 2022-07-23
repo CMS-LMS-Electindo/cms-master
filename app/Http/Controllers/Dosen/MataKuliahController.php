@@ -98,7 +98,7 @@ class MataKuliahController extends Controller
           for ($i=0; $i < count($data['data']) ; $i++) { 
             $disable ="disabled";
             $footer ='<a href="#" class="btn btn-sm btn-bg-light btn-active-color-primary me-3 " onclick="detailMK(\''.$data['data'][$i]['kode_kurikulum'].'\',\''.$data['data'][$i]['kode_mk'].'\')">Info Mata Kuliah</a>
-            <a href="#" class="btn btn-sm btn-danger me-3 create-mk-'.$i.'" onclick="buatMK(\'create-mk-'.$i.'\',\''.$data['data'][$i]['kode_prodi'].'\',\''.$data['data'][$i]['kode_kurikulum'].'\',\''.$data['data'][$i]['kode_mk'].'\',\''.$data['data'][$i]['nama_mk'].'\')">Buat Mata Kuliah</a>';
+            <a href="#" class="btn btn-sm btn-danger me-3 create-mk-'.$i.'" onclick="buatMK(\'create-mk-'.$i.'\',\''.$data['data'][$i]['kode_prodi'].'\',\''.$data['data'][$i]['kode_kurikulum'].'\',\''.$data['data'][$i]['kode_mk'].'\',\''.$data['data'][$i]['nama_mk'].'\',\''.$data['data'][$i]['kode_fakultas'].'\')">Buat Mata Kuliah</a>';
   
             $qMK = Course::where(['idsemester' =>$sem->id, 'code_prodi' =>$data['data'][$i]['kode_prodi'], 'idnumber' => $data['data'][$i]['kode_prodi']. '-'.$tahunSingkat. '-'.$data['data'][$i]['kode_kurikulum'].'-'.$data['data'][$i]['kode_mk']])->first();
             $idEn =  Response::encrypt('0');
@@ -324,7 +324,7 @@ class MataKuliahController extends Controller
       $kodeKategori = $request->kode_prodi. "-". $tahunSingkat; //idnumber
       $idCategory = $this->getCategory($kodeKategori);
 
-      $s = "Ganjil";
+      $s = "Gasal";
       if ($sem->semester == 2)
         $s = "Genap";
       elseif ($sem->semester == 2)
@@ -333,14 +333,14 @@ class MataKuliahController extends Controller
       if ($idCategory === 0){
         // 20303 - 2021/2022 Genap
         $nama = $request->kode_prodi . " - ". substr_replace($sem->year,'/',4,1) ." " . $s;
-        $idCategory =$this->makeCategory($kodeKategori, $request->kode_prodi, $nama );
+        $idCategory =$this->makeCategory($kodeKategori, $request->kode_fakultas.$request->kode_prodi, $nama );
       }
       // return response()->json($idCategory);
       
       $fullname =substr($sem->year,0,4). " ". $s. " - ". $request->nama_mk;
       $shortname=$request->kode_prodi. '-'.$tahunSingkat. '-'.$request->kode_mk;
       $categoryid=$idCategory;
-      $idnumber=$request->kode_prodi. '-'.$tahunSingkat. '-'.$request->kode_kurikulum.'-'.$request->kode_mk;
+      $idnumber=$request->kode_fakultas.$request->kode_prodi. '-'.$tahunSingkat. '-'.$request->kode_kurikulum.'-'.$request->kode_mk;
 
       $course= new stdClass();
       $course->fullname=$fullname;
@@ -498,7 +498,7 @@ class MataKuliahController extends Controller
       $resp = $curl->post($baca_kategori, $param);
       $respA = json_decode($resp);
       var_dump($respA);
-      var_dump($param);
+      // var_dump($param);
       var_dump(session('TokenLMSAuth'));
       if (!empty($respA->loginurl)) {
         $loginurl = $respA->loginurl; 

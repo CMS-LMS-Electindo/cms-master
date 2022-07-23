@@ -374,7 +374,7 @@
     })
   }
   
-  function buatMK(kelas, kode_prodi,kode_kurikulum,kode_mk,nama_mk) {
+  function buatMK(kelas, kode_prodi,kode_kurikulum,kode_mk,nama_mk,kode_fakultas) {
     Swal.fire({
         title: 'Apakah anda yakin akan membuat Mata Kuliah ini ke LMS?',
         text: "",
@@ -401,7 +401,7 @@
             type: "POST",
             url: "{{ url('buat-mata-kuliah') }}",
               data:{
-                '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,nama_mk
+                '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,nama_mk,kode_fakultas
             },
             success: function(response) {
                 if (response.status==true) {
