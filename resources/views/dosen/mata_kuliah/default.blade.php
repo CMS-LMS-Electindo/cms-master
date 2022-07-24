@@ -445,7 +445,7 @@
                         // $("#progressBarMK").attr("aria-valuenow",'100');
                         // $("#progressBarMK").html("100%");
 
-                        getdata();
+                        // getdata();
                         $.ajax({
                           type: "POST",
                           url: "{{ url('enrol-mahasiswa-mata-kuliah') }}",
