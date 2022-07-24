@@ -435,15 +435,15 @@
                         // Enrol mahasiswa
 
                         // proses berhenti if error enrol mahasiswa
-                        toastr.success(response.message, 'Pembuatan Mata Kuliah telah selesai', {timeOut: 5000});
-                        $("."+kelas).html(" Buat Kelas");
-                        // $("."+kelas).html(" Buat Mata Kuliah");
-                        $("."+kelas).addClass('btn-danger');
-                        $("."+kelas).removeClass("btn-light");
+                        // toastr.success(response.message, 'Pembuatan Mata Kuliah telah selesai', {timeOut: 5000});
+                        // $("."+kelas).html(" Buat Kelas");
+                        // // $("."+kelas).html(" Buat Mata Kuliah");
+                        // $("."+kelas).addClass('btn-danger');
+                        // $("."+kelas).removeClass("btn-light");
                         
-                        $("#progressBarMK").css("width","100%");
-                        $("#progressBarMK").attr("aria-valuenow",'100');
-                        $("#progressBarMK").html("100%");
+                        // $("#progressBarMK").css("width","100%");
+                        // $("#progressBarMK").attr("aria-valuenow",'100');
+                        // $("#progressBarMK").html("100%");
 
                         getdata();
                         $.ajax({
