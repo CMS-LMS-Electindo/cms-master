@@ -32,7 +32,7 @@ class GroupingMahasiswaController extends Controller
                 $addGroup = $this->createGroupMK($idCourseLMS,$qMhs[$i]['kode_kelas'],$idNumber);
                 $kel = $qMhs[$i]['kode_kelas'];
                 // tambahkan mhs ke grup
-                // return response()->json($addGroup);
+                return response()->json($addGroup);
                 $idGrup = $addGroup[0]['id'];
                 $addMember = $this->AddMemberGroup($idGrup, $idUser) ;
             }else{
