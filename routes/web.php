@@ -75,11 +75,13 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::post('/enrol-mahasiswa-mata-kuliah', [EnrolController::class, 'EnrolMahasiswa']);
         Route::post('/get-mk-dosen', [MataKuliahController::class, 'getMkDosen']);
         
+
         Route::post('/buat-grup-mata-kuliah', [GroupingMahasiswaController::class, 'AddGroupMk']);
         Route::post('/add-mhs-grup-mata-kuliah', [GroupingMahasiswaController::class, 'AddMhsGroupMk']);
     });
     Route::group(['roles' => ['admin', 'dosen','mahasiswa']], function () {
         Route::get('/sso-lms', [MataKuliahController::class, 'ActionMoodle']);            
+        Route::get('/login-lms', [MataKuliahController::class, 'LoginLMS']);
         Route::post('/get-detail-mk', [MataKuliahController::class, 'getDetailMK']);
         Route::get('/my-profile', [UserController::class, 'MyProfile']);
         Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);

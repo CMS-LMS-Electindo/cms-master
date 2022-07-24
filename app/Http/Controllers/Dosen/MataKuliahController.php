@@ -95,6 +95,13 @@ class MataKuliahController extends Controller
           // $data = $response;
           curl_close($curl);
           $html="";
+
+          $result = array(
+            'status'    => 1,
+            'message'    => "Data Tidak Ditemukan.",
+            'html' => "Data Tidak Ditemukan."
+          );
+
           for ($i=0; $i < count($data['data']) ; $i++) { 
             $disable ="disabled";
             $footer ='<a href="#" class="btn btn-sm btn-bg-light btn-active-color-primary me-3 " onclick="detailMK(\''.$data['data'][$i]['kode_kurikulum'].'\',\''.$data['data'][$i]['kode_mk'].'\')">Info Mata Kuliah</a>
@@ -301,11 +308,6 @@ class MataKuliahController extends Controller
           $result['req'] = $postAr;
         }
         // print_r($data);
-
-        // $qMK = Course::where(['idsemester' =>$sem->id, 'code_prodi' =>$nidn])->get();
-
-        
-        
         // return $data['data'];
         return response()->json($result);
     }
@@ -555,6 +557,87 @@ class MataKuliahController extends Controller
         header('Location: '.$login);
       }
     }
+    public function LoginLMS(Request $request)
+    {
+      $nidn = Auth::user()->username;
+      if ($nidn !== "admin"){
+          $nidn = $nidn;
+      }else{
+          $nidn = '0003117804';
+      }
+      
+      $username = $nidn;
+      $functionname = 'auth_userkey_request_login_url';
+      $login="";
+      $param = [
+        'user' => [
+          'username'  => strtolower($username),    
+        ]
+      ];
+    
+      $curl = new curl;
+      $baca_kategori = session('DomainLMS') . '/webservice/rest/server.php'.'?wstoken=' . session('TokenLMSAuth') . '&moodlewsrestformat=json&wsfunction=' . $functionname ;
+      $resp = $curl->post($baca_kategori, $param);
+      $respA = json_decode($resp);
+      var_dump($respA);
+      // var_dump($param);
+      var_dump(session('TokenLMSAuth'));
+      if (!empty($respA->loginurl)) {
+        $loginurl = $respA->loginurl; 
+
+        $id = $request->id;
+        $menu = $request->type;
+        $domainLMS = session('DomainLMS');
+
+        if($menu=="peserta") {
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/user/index.php?id='.$id;
+        } else if($menu=="kelas"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/group/index.php?id='.$id;
+        }elseif($menu=="bobotn"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/grade/edit/tree/index.php?id='.$id;
+        }elseif($menu=="lihatn"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/grade/report/grader/index.php?id='.$id;
+        }elseif($menu=="eksn"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/grade/export/xls/index.php?id='.$id;
+        }elseif($menu=="statistik"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/report/overviewstats/index.php?course='.$id;
+        }elseif($menu=="komplit"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/report/progress/index.php?course='.$id;
+        }elseif($menu=="partisipasi"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/report/participation/index.php?id='.$id;
+        }elseif($menu=="datas"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/question/edit.php?courseid='.$id;
+        }elseif($menu=="imports"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/question/import.php?courseid='.$id;
+        }elseif($menu=="ekspors"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/question/export.php?courseid='.$id;
+        }elseif($menu=="editk"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/course/edit.php?id='.$id;
+        }elseif($menu=="backupk"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/backup/backup.php?id='.$id;
+        }elseif($menu=="restorek"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/backup/restorefile.php?contextid='.$id;
+        }elseif($menu=="importk"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/backup/import.php?id='.$id;
+        }elseif($menu=="masuk"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/course/view.php?id='.$id;
+          
+          // menu mahasiswa
+        }elseif($menu=="nilai"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/grade/report/user/index.php?id='.$id;
+        }elseif($menu=="file"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/user/files.php';
+        }elseif($menu=="calender"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/calendar/view.php?view=month&course='.$id;
+        }elseif($menu=="badges"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/badges/view.php?type=2&id='.$id;
+        }elseif($menu=="kompetensi"){
+          $login=$loginurl.'&wantsurl='.$domainLMS.'/admin/tool/lp/coursecompetencies.php?courseid='.$id;
+        }
+        header('Location: '.$login);
+      }
+    }
+    
     public function getDetailMK(Request $request)
     {
       
