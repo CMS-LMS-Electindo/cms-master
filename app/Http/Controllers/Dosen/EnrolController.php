@@ -29,7 +29,7 @@ class EnrolController extends Controller
                 $enrol = $this->EnrolUser($idCourseLMS, $dosen->id_lms, '3');
             }else{
                 //Buat User 
-                $qUser = $this->SyncUser($qDosen->kode_dosen,$qDosen[$i]['nama_dosenn'],$qDosen[$i]['kode_prodin'],$qDosen[$i]['kode_fakultasn'], $qDosen[$i]['emailn'],'dosen', $domain,"DSN");
+                $qUser = $this->SyncUser($qDosen[$i]['kode_dosen'],$qDosen[$i]['nama_dosen'],$qDosen[$i]['kode_prodi'],$qDosen[$i]['kode_fakultas'], $qDosen[$i]['email'],'dosen', $domain,"DSN");
                 $enrol = $this->EnrolUser($idCourseLMS, $qUser[0]['id'], '3');
             }
         }
@@ -250,11 +250,15 @@ class EnrolController extends Controller
         $data = json_decode($response, TRUE);
         // $data = $response;
         // var_dump($postAr);
-        // var_dump($data);
         curl_close($curl);
+        
         return $data['data'];
     }
     public function EnrolMahasiswaMK(Request $request)
+    {
+        
+    }
+    public function LoginLMS(Request $request)
     {
         
     }
