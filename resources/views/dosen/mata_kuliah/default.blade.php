@@ -422,7 +422,7 @@
                     type: "POST",
                     url: "{{ url('enrol-dosen-mata-kuliah') }}",
                       data:{
-                        '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS
+                        '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS,kode_fakultas
                     },
                     success: function(response) {
                       //ubah progressBar
@@ -450,7 +450,7 @@
                           type: "POST",
                           url: "{{ url('enrol-mahasiswa-mata-kuliah') }}",
                             data:{
-                              '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS
+                              '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS,kode_fakultas
                           },
                           success: function(response) {
                             //ubah progressBar
@@ -464,7 +464,7 @@
                                 type: "POST",
                                 url: "{{ url('buat-grup-mata-kuliah') }}",
                                   data:{
-                                    '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS
+                                    '_token': '{{ csrf_token() }}',kode_prodi,kode_kurikulum,kode_mk,idLMS,kode_fakultas
                                 },
                                 success: function(response) {
                                   //ubah progressBar

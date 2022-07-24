@@ -25,7 +25,7 @@ class GroupingMahasiswaController extends Controller
         $addMember = 0;
         for ($i=0; $i < count($qMhs); $i++) { 
             $idUser = MstUser::where('username', $qMhs[$i]['kode_mahasiswa'])->first()->id_lms;
-            $idNumber = $tahunSingkat."-".$request->kode_prodi."-".$request->kode_mk."-".$qMhs[$i]['kode_kelas'];
+            $idNumber = $tahunSingkat."-".$request->kode_fakultas.$request->kode_prodi."-".$request->kode_kurikulum.'-'.$request->kode_mk."-".$qMhs[$i]['kode_kelas'];
             if ($kel !== $qMhs[$i]['kode_kelas']){
                 //buat grup
                 // id number : 20212-59888-BC333333-PTIKA
