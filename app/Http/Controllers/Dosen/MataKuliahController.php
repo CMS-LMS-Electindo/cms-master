@@ -637,7 +637,6 @@ class MataKuliahController extends Controller
         header('Location: '.$login);
       }
     }
-    
     public function getDetailMK(Request $request)
     {
       
