@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home1');
+Route::get('/login', [App\Http\Controllers\HomeController::class, 'index'])->name('login');
 
 Auth::routes();
 
